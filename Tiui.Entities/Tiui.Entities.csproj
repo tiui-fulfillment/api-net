@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tiui.Patterns\Tiui.Patterns.csproj" />
+    <ProjectReference Include="..\Tiui.Utils\Tiui.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

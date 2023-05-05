@@ -1,0 +1,23 @@
+﻿using Tiui.Application.DTOs.Comun;
+
+namespace Tiui.Application.DTOs.Clientes
+{
+    public class LibretaDireccionDTO
+    {
+        public string Nombre { get; set; }
+        public string Empresa { get; set; }
+        public string Telefono { get; set; }
+        public string CorreoElectronico { get; set; }
+        public int? TiuiAmigoId { get; set; }
+        public long? DireccionId { get; set; }
+        public string Calle { get; set; }
+        public string Cruzamiento { get; set; }
+        public string Numero { get; set; }
+        public string Colonia { get; set; }
+        public string CodigoPostal { get; set; }
+        public string Referencias { get; set; }
+        public bool Activo { get; set; }
+        public int? MunicipioId { get; set; }
+        public MunicipioDTO Municipio { get; set; }
+    }
+}

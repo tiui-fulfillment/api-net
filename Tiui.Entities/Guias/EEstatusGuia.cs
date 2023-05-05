@@ -1,0 +1,31 @@
+﻿namespace Tiui.Entities.Guias
+{
+  /// <summary>
+  /// Enum para el mapeo de los estatus del paquete
+  /// </summary>
+  public enum EEstatusGuia
+  {
+    DOCUMENTADO_CONSOLIDADO = 1,
+    CAMINO_CEDIS_CDMX = 2,
+    RECIBIDO_EN_CEDIS_CDMX = 3,
+    EN_CEDIS_CDMX = 4,
+    DOCUMENTADO_FULFILLMENT = 5,
+    PREPARACION = 6,
+    FULFILLMENT_EN_CEDIS_CDMX = 7,
+    PRODUCTO_AGOTADO = 8,
+    RUTA_ENTREGA = 9,
+    PRIMER_INTENTO_ENTREGA = 10,
+    REAGENDADO = 11,
+    CANCELADO = 12,
+    ENTREGAGO = 13,
+    CONCILIADO = 14,
+    PAGADO = 15,
+    DOCUMENTADO_RECOLECCION = 16,
+    EN_CAMINO_RECOLECCION = 17,
+    ENVIO_RECOLECTADO = 18,
+    EN_CEDIS_CDMX_RECOLECCION = 19,
+    PREPARANDO_RUTA = 20,
+    NO_VISITADO = 21,
+    ENVIO_PARA_REVISION = 22
+  }
+}

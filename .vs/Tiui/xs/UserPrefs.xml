@@ -1,0 +1,63 @@
+﻿<Properties StartupConfiguration="{5C22BC6C-A74E-43F3-89C6-311C63977B21}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Presentation.Tiui.Api PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tiui.Api/appsettings.json">
+    <Files>
+      <File FileName="Tiui.Data/TiuiDBContext.cs" />
+      <File FileName="Tiui.Reports/Templates/dsReportsModels.Designer.cs" />
+      <File FileName="Tiui.Entities/Cancelaciones/CancelacionGuia.cs" />
+      <File FileName="Tiui.Api/Controllers/MotivoCancelacionController.cs" />
+      <File FileName="Tiui.Reports/Reports/GuiaReport.cs" />
+      <File FileName="Tiui.Reports/Reports/GuiaCompleteReport.cs" />
+      <File FileName="Tiui.Reports/Templates/dsReportsModels.cs" />
+      <File FileName="Tiui.Reports/Templates/dsReportsModels.xsc" />
+      <File FileName="Tiui.Reports/Templates/dsReportsModels.xsd" />
+      <File FileName="Tiui.Reports/Templates/GuiasCompleteReport.rdlc" Line="1740" Column="63" />
+      <File FileName="Tiui.Entities/Cancelaciones/MotivoCancelacion.cs" />
+      <File FileName="Tiui.Services/Cancelaciones/MotivoCancelacionService.cs" />
+      <File FileName="Tiui.Entities/Cancelaciones/ETipoCancelacion.cs" />
+      <File FileName="Tiui.Api/Controllers/GuiaController.cs" />
+      <File FileName="Tiui.Entities/Guias/ETipoProcesoCancelacion.cs" />
+      <File FileName="Tiui.Entities/Guias/EEstatusGuia.cs" />
+      <File FileName="Tiui.Entities/Guias/DireccionGuia.cs" />
+      <File FileName="Tiui.Entities/Guias/Destinatario.cs" />
+      <File FileName="Tiui.Entities/Guias/BitacoraGuia.cs" />
+      <File FileName="Tiui.Entities/Guias/EvidenciaEntrega.cs" />
+      <File FileName="Tiui.Entities/Guias/Guia.cs" />
+      <File FileName="Tiui.Entities/Guias/NotificacionCliente.cs" />
+      <File FileName="Tiui.Entities/Guias/Paquete.cs" />
+      <File FileName="Tiui.Entities/Guias/Paqueteria.cs" />
+      <File FileName="Tiui.Entities/Guias/Remitente.cs" />
+      <File FileName="Tiui.Reports/Templates/dsReportsModels.xss" />
+      <File FileName="Tiui.Reports/Templates/GuiaReport.rdlc" />
+      <File FileName="Tiui.Api/appsettings.json" Line="1" Column="1" />
+      <File FileName="Tiui.Api/config.txt" Line="1" Column="1" />
+      <File FileName="Tiui.Api/Program.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Tiui" expanded="True">
+            <Node name="Presentation" expanded="True">
+              <Node name="Tiui.Api" expanded="True">
+                <Node name="Controllers" expanded="True" />
+                <Node name="appsettings.json" selected="True" />
+              </Node>
+              <Node name="Tiui.Reports" expanded="True">
+                <Node name="Reports" expanded="True" />
+                <Node name="Templates" expanded="True">
+                  <Node name="dsReportsModels.xsd" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
