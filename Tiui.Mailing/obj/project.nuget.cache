@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GUWXRy8hyvYpQuV4Zirnap0Tbuqwyxr0yrdpuACMX54y8YAZbSytMifpHKfXBAIfToaOndCU2H8ak37xqqSzyA==",
+  "dgSpecHash": "1pLbwWL2o6VWUM1/XtpCGGOFkSeVD9dQBj2eW33P9/H28+KQ/5YANGVQasXE0sfZ3AcgwzBR26nsDrVJqoOfJA==",
   "success": true,
-  "projectFilePath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj",
+  "projectFilePath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj",
   "expectedPackageFiles": [
     "/Users/alejandrolopezramirez/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

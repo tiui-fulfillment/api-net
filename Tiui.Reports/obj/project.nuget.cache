@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LvifTwC47Pe5P3UNeJLrsainbEDY8JRsgyM3dSb67222NGNBrx01ebB0dEC0jwg/ah/VC5MPc8onfx3X6Lc6qQ==",
+  "dgSpecHash": "PjPbkSRepjgT295jzIlylytVNKcrNQTqZCzI1JGQwIxfApBfv9x6pHBGg50BJJqNHZzECC3F4m44rE6+q133IA==",
   "success": true,
-  "projectFilePath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/Tiui.Reports.csproj",
+  "projectFilePath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/Tiui.Reports.csproj",
   "expectedPackageFiles": [
     "/Users/alejandrolopezramirez/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

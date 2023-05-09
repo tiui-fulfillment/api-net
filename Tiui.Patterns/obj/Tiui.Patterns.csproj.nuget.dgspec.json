@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj": {}
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj": {}
   },
   "projects": {
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj",
         "projectName": "Tiui.Patterns",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

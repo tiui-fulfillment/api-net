@@ -1,56 +1,73 @@
 ﻿<Properties StartupConfiguration="{5C22BC6C-A74E-43F3-89C6-311C63977B21}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.Presentation.Tiui.Api PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tiui.Api/appsettings.json">
+  <MonoDevelop.Ide.ItemProperties.Presentation.Tiui.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tiui.Data/TiuiDBContext.cs">
     <Files>
-      <File FileName="Tiui.Data/TiuiDBContext.cs" />
-      <File FileName="Tiui.Reports/Templates/dsReportsModels.Designer.cs" />
-      <File FileName="Tiui.Entities/Cancelaciones/CancelacionGuia.cs" />
-      <File FileName="Tiui.Api/Controllers/MotivoCancelacionController.cs" />
-      <File FileName="Tiui.Reports/Reports/GuiaReport.cs" />
-      <File FileName="Tiui.Reports/Reports/GuiaCompleteReport.cs" />
-      <File FileName="Tiui.Reports/Templates/dsReportsModels.cs" />
-      <File FileName="Tiui.Reports/Templates/dsReportsModels.xsc" />
-      <File FileName="Tiui.Reports/Templates/dsReportsModels.xsd" />
-      <File FileName="Tiui.Reports/Templates/GuiasCompleteReport.rdlc" Line="1740" Column="63" />
-      <File FileName="Tiui.Entities/Cancelaciones/MotivoCancelacion.cs" />
-      <File FileName="Tiui.Services/Cancelaciones/MotivoCancelacionService.cs" />
-      <File FileName="Tiui.Entities/Cancelaciones/ETipoCancelacion.cs" />
-      <File FileName="Tiui.Api/Controllers/GuiaController.cs" />
-      <File FileName="Tiui.Entities/Guias/ETipoProcesoCancelacion.cs" />
-      <File FileName="Tiui.Entities/Guias/EEstatusGuia.cs" />
-      <File FileName="Tiui.Entities/Guias/DireccionGuia.cs" />
-      <File FileName="Tiui.Entities/Guias/Destinatario.cs" />
-      <File FileName="Tiui.Entities/Guias/BitacoraGuia.cs" />
-      <File FileName="Tiui.Entities/Guias/EvidenciaEntrega.cs" />
-      <File FileName="Tiui.Entities/Guias/Guia.cs" />
-      <File FileName="Tiui.Entities/Guias/NotificacionCliente.cs" />
-      <File FileName="Tiui.Entities/Guias/Paquete.cs" />
-      <File FileName="Tiui.Entities/Guias/Paqueteria.cs" />
-      <File FileName="Tiui.Entities/Guias/Remitente.cs" />
-      <File FileName="Tiui.Reports/Templates/dsReportsModels.xss" />
-      <File FileName="Tiui.Reports/Templates/GuiaReport.rdlc" />
-      <File FileName="Tiui.Api/appsettings.json" Line="1" Column="1" />
+      <File FileName="Tiui.Services/Guias/GuiaWebSocketHandler.cs" Line="26" Column="27" />
+      <File FileName="Tiui.Services/Guias/NotificacionClienteService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Services/Guias/PaqueteriaService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Services/Guias/GuiaStateService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Services/Guias/GuiaService.cs" Line="22" Column="38" />
+      <File FileName="Tiui.Application/Repository/Guias/IGuiaRepository.cs" Line="9" Column="22" />
+      <File FileName="Tiui.Application/Repository/UnitOfWork/IUnitOfWork.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Repository/UnitOfWork/IRepository.cs" Line="6" Column="54" />
+      <File FileName="Tiui.Application/Repository/ICRUDRepository.cs" Line="15" Column="48" />
+      <File FileName="Tiui.Application/Services/Guias/IGuiaService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Services/Guias/IGuiaWebSocketHandler.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Services/Clientes/ITiuiAmigoService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Services/Clientes/IConfiguracionCajaTiuiAmigoService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Security/EncripHashResult.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Security/IHashService.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Application/Security/ISecurityManager.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Entities/Guias/WebSocketConnectionManager.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Entities/Guias/WebSocketConnection.cs" Line="3" Column="33" />
+      <File FileName="Tiui.Entities/Guias/Guia.cs" Line="1" Column="1" />
       <File FileName="Tiui.Api/config.txt" Line="1" Column="1" />
-      <File FileName="Tiui.Api/Program.cs" Line="1" Column="1" />
+      <File FileName="Tiui.Api/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="Tiui.Api/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="Tiui.Api/Helpers/DIContainer.cs" Line="77" Column="61" />
+      <File FileName="Tiui.Data/TiuiDBContext.cs" Line="36" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Tiui" expanded="True">
+            <Node name="Domain" expanded="True">
+              <Node name="Tiui.Patterns" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="FrameworkReferences" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="Infrastructure" expanded="True">
+              <Node name="Tiui.Data" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="PackageDependencies" expanded="True">
+                    <Node name="Npgsql.EntityFrameworkCore.PostgreSQL" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
             <Node name="Presentation" expanded="True">
               <Node name="Tiui.Api" expanded="True">
-                <Node name="Controllers" expanded="True" />
-                <Node name="appsettings.json" selected="True" />
-              </Node>
-              <Node name="Tiui.Reports" expanded="True">
-                <Node name="Reports" expanded="True" />
-                <Node name="Templates" expanded="True">
-                  <Node name="dsReportsModels.xsd" expanded="True" />
+                <Node name="Dependencies" expanded="True">
+                  <Node name="PackageDependencies" expanded="True" />
                 </Node>
+                <Node name="Controllers" expanded="True" />
+                <Node name="Helpers" expanded="True" />
+                <Node name="Properties" expanded="True" />
+                <Node name="appsettings.json" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Services" expanded="True">
+              <Node name="Tiui.Services" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="PackageDependencies" expanded="True" />
+                </Node>
+                <Node name="Cancelaciones" expanded="True" />
+                <Node name="Clientes" expanded="True" />
+                <Node name="Comun" expanded="True" />
+                <Node name="Guias" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -60,4 +77,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

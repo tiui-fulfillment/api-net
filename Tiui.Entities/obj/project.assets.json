@@ -4097,11 +4097,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj",
+      "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj",
       "projectName": "Tiui.Entities",
-      "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj",
+      "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj",
       "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-      "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/obj/",
+      "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -4116,11 +4116,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj": {
-              "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj"
+            "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj": {
+              "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj"
             },
-            "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj": {
-              "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj"
+            "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj": {
+              "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj"
             }
           }
         }
@@ -4150,7 +4150,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -4488,11 +4488,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj",
+      "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj",
       "projectName": "Tiui.Mailing",
-      "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj",
+      "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj",
       "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-      "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/obj/",
+      "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -4507,8 +4507,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-              "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+            "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+              "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
             }
           }
         }
@@ -4538,7 +4538,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

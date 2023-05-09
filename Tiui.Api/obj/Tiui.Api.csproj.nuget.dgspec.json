@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Api/Tiui.Api.csproj": {}
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Api/Tiui.Api.csproj": {}
   },
   "projects": {
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Api/Tiui.Api.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Api/Tiui.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Api/Tiui.Api.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Api/Tiui.Api.csproj",
         "projectName": "Tiui.Api",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Api/Tiui.Api.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Api/Tiui.Api.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Api/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -26,29 +26,29 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Data/Tiui.Data.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Data/Tiui.Data.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Data/Tiui.Data.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Data/Tiui.Data.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Files/Tiui.Files.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Files/Tiui.Files.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Files/Tiui.Files.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Files/Tiui.Files.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/Tiui.Reports.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/Tiui.Reports.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/Tiui.Reports.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/Tiui.Reports.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Security/Tiui.Security.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Security/Tiui.Security.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Security/Tiui.Security.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Security/Tiui.Security.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj"
               }
             }
           }
@@ -111,18 +111,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj",
         "projectName": "Tiui.Application",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -137,11 +137,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj"
               }
             }
           }
@@ -189,18 +189,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Data/Tiui.Data.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Data/Tiui.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Data/Tiui.Data.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Data/Tiui.Data.csproj",
         "projectName": "Tiui.Data",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Data/Tiui.Data.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Data/Tiui.Data.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Data/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -215,11 +215,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj"
               }
             }
           }
@@ -244,9 +244,13 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[7.0.4, )"
             }
           },
           "imports": [
@@ -265,18 +269,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj",
         "projectName": "Tiui.Entities",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -291,11 +295,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj"
               }
             }
           }
@@ -325,18 +329,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Files/Tiui.Files.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Files/Tiui.Files.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Files/Tiui.Files.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Files/Tiui.Files.csproj",
         "projectName": "Tiui.Files",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Files/Tiui.Files.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Files/Tiui.Files.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Files/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Files/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -351,8 +355,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               }
             }
           }
@@ -388,18 +392,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj",
         "projectName": "Tiui.Mailing",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/Tiui.Mailing.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/Tiui.Mailing.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Mailing/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Mailing/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -414,8 +418,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               }
             }
           }
@@ -445,18 +449,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj",
         "projectName": "Tiui.Patterns",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -498,18 +502,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/Tiui.Reports.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/Tiui.Reports.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/Tiui.Reports.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/Tiui.Reports.csproj",
         "projectName": "Tiui.Reports",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/Tiui.Reports.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/Tiui.Reports.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Reports/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Reports/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -524,8 +528,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               }
             }
           }
@@ -565,18 +569,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Security/Tiui.Security.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Security/Tiui.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Security/Tiui.Security.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Security/Tiui.Security.csproj",
         "projectName": "Tiui.Security",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Security/Tiui.Security.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Security/Tiui.Security.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Security/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Security/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -591,8 +595,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               }
             }
           }
@@ -636,18 +640,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj",
         "projectName": "Tiui.Services",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -662,14 +666,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj"
               },
-              "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj": {
-                "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj"
+              "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj": {
+                "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj"
               }
             }
           }
@@ -684,6 +688,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "ReportViewerCore.NETCore": {
               "target": "Package",
               "version": "[15.1.15, )"
@@ -705,18 +713,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj": {
+    "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj",
+        "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj",
         "projectName": "Tiui.Utils",
-        "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj",
+        "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj",
         "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-        "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/obj/",
+        "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -764,7 +772,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

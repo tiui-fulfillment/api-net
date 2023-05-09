@@ -16,6 +16,7 @@ using Tiui.Data.UnitOfWork;
 using Tiui.Services.Clientes;
 using Tiui.Services.Comun;
 using Tiui.Services.Guias;
+using Tiui.Services.WebSockets;
 using Tiui.Services.Seguridad;
 using Tiui.Reports.Reports;
 using Tiui.Reports.DataAccess;
@@ -31,7 +32,7 @@ using Tiui.Application.Mail.Helpers;
 using Tiui.Mailing.Configuration.Helpers;
 using Tiui.Application.File;
 using Tiui.Files;
-
+using Tiui.Application.Services.websocket;
 namespace Tiui.Api.Helpers
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Tiui.Api.Helpers
             services.AddScoped<ILocalizacionService, LocalizacionService>();
             services.AddScoped<IPaqueteriaService, PaqueteriaService>();
             services.AddScoped<IGuiaService, GuiaService>();
+            services.AddScoped<IGuiaWebSocketHandler, GuiaWebSocketHandler>();
             services.AddScoped<IDireccionService, DireccionService>();
             services.AddScoped<IConfiguracionCajaTiuiAmigoService, ConfiguracionCajaTiuiAmigoService>();
             services.AddScoped<IConfiguracionAppService, ConfiguracionAppService>();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KnlBYEP0qhRuOEms/Esb+jeD0nzfHvD/jy99eL8IExTSvqL+GLB6paZY7hI1S80DBLPOF+F6LwmFOYU3BgYTOA==",
+  "dgSpecHash": "U7SXqB7nUTku+Oi/jDiHLBxNvqh+EObtGd/62GkmjqyoKbs8NUnG3zWQVgIM9UojVV2M3/gOfIIUtzH5T63bqg==",
   "success": true,
-  "projectFilePath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Patterns/Tiui.Patterns.csproj",
+  "projectFilePath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Patterns/Tiui.Patterns.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sSnBLYL0zgx52rrWmBh2q8hu77NdxwJdiNqvI4x0FpauQsud87459KrD81/6Wx1dwaKqZsu/jmDvIMpgX5H50g==",
+  "dgSpecHash": "yxoqmsN/z13EFhbLXIm/7N13LLya0a3HQQJi5OC6PO6eBrvElX0niP4tlJPW3xammPnY9XSFStJeHhDuFkDI/A==",
   "success": true,
-  "projectFilePath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj",
+  "projectFilePath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj",
   "expectedPackageFiles": [
     "/Users/alejandrolopezramirez/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -46,6 +46,7 @@
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.netcore.targets/1.0.1/microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/newtonsoft.json/9.0.1/newtonsoft.json.9.0.1.nupkg.sha512",
+    "/Users/alejandrolopezramirez/.nuget/packages/npgsql/7.0.4/npgsql.7.0.4.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/reportviewercore.netcore/15.1.15/reportviewercore.netcore.15.1.15.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/runtime.native.system/4.0.0/runtime.native.system.4.0.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/system.appcontext/4.1.0/system.appcontext.4.1.0.nupkg.sha512",
@@ -80,7 +81,7 @@
     "/Users/alejandrolopezramirez/.nuget/packages/system.resources.extensions/4.7.1/system.resources.extensions.4.7.1.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/system.resources.resourcemanager/4.0.1/system.resources.resourcemanager.4.0.1.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/system.runtime/4.1.0/system.runtime.4.1.0.nupkg.sha512",
-    "/Users/alejandrolopezramirez/.nuget/packages/system.runtime.compilerservices.unsafe/4.7.0/system.runtime.compilerservices.unsafe.4.7.0.nupkg.sha512",
+    "/Users/alejandrolopezramirez/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/system.runtime.extensions/4.1.0/system.runtime.extensions.4.1.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/system.runtime.handles/4.0.1/system.runtime.handles.4.0.1.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/system.runtime.interopservices/4.1.0/system.runtime.interopservices.4.1.0.nupkg.sha512",

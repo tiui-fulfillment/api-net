@@ -795,6 +795,23 @@
           }
         }
       },
+      "Npgsql/7.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "ReportViewerCore.NETCore/15.1.15": {
         "type": "package",
         "dependencies": {
@@ -1320,17 +1337,20 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.7.0": {
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Runtime.Extensions/4.1.0": {
@@ -2534,6 +2554,31 @@
         "newtonsoft.json.9.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "Npgsql/7.0.4": {
+      "sha512": "7UVPYy2RP0ci04PED1tc9ZCaTw/DfSdSkLiGEFCAvwMwsgA/bAluj1liNzP1IpN0MFofnOF0cm1zJfmbEuCehg==",
+      "type": "package",
+      "path": "npgsql/7.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net5.0/Npgsql.dll",
+        "lib/net5.0/Npgsql.xml",
+        "lib/net6.0/Npgsql.dll",
+        "lib/net6.0/Npgsql.xml",
+        "lib/net7.0/Npgsql.dll",
+        "lib/net7.0/Npgsql.xml",
+        "lib/netcoreapp3.1/Npgsql.dll",
+        "lib/netcoreapp3.1/Npgsql.xml",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.7.0.4.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
       ]
     },
     "ReportViewerCore.NETCore/15.1.15": {
@@ -4169,29 +4214,29 @@
         "system.runtime.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.7.0": {
-      "sha512": "IpU1lcHz8/09yDr9N+Juc7SCgNUz+RohkCQI+KsWKR67XxpFr8Z6c8t1iENCXZuRuNCc4HBwme/MDHNVCwyAKg==",
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.7.0",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.7.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Runtime.Extensions/4.1.0": {
@@ -5204,6 +5249,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Npgsql >= 7.0.4",
       "ReportViewerCore.NETCore >= 15.1.15",
       "Tiui.Application >= 1.0.0",
       "Tiui.Entities >= 1.0.0",
@@ -5216,11 +5262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj",
+      "projectUniqueName": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj",
       "projectName": "Tiui.Services",
-      "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/Tiui.Services.csproj",
+      "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/Tiui.Services.csproj",
       "packagesPath": "/Users/alejandrolopezramirez/.nuget/packages/",
-      "outputPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Services/obj/",
+      "outputPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Services/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alejandrolopezramirez/.nuget/NuGet/NuGet.Config"
@@ -5235,14 +5281,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj": {
-              "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Application/Tiui.Application.csproj"
+            "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj": {
+              "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Application/Tiui.Application.csproj"
             },
-            "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj": {
-              "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj"
+            "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj": {
+              "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj"
             },
-            "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj": {
-              "projectPath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Utils/Tiui.Utils.csproj"
+            "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj": {
+              "projectPath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Utils/Tiui.Utils.csproj"
             }
           }
         }
@@ -5257,6 +5303,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Npgsql": {
+            "target": "Package",
+            "version": "[7.0.4, )"
+          },
           "ReportViewerCore.NETCore": {
             "target": "Package",
             "version": "[15.1.15, )"
@@ -5278,7 +5328,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

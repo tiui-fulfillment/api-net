@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Tiui.Entities.Comun;
-using Tiui.Entities.Comun;
 using Tiui.Patterns.Behavior;
 
 namespace Tiui.Entities.Guias

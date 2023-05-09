@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/Tiui.Api.props" />
-</Project>

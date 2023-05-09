@@ -19,7 +19,7 @@ var log = new LoggerConfiguration()
 
 builder.Host.ConfigureLogging(loggin =>
 {
-    loggin.AddSerilog(log);
+  loggin.AddSerilog(log);
 });
 #endregion
 
@@ -28,7 +28,7 @@ builder.Host.ConfigureLogging(loggin =>
 // Add services to the container.
 builder.Services.AddControllers(options =>
 {
-    options.Filters.Add(typeof(AppExceptionHandler));
+  options.Filters.Add(typeof(AppExceptionHandler));
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -36,12 +36,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<TiuiDBContext>(options =>
              options.UseNpgsql("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;"));
-builder.Services.AddScoped<NpgsqlConnection>(options => 
+builder.Services.AddScoped<NpgsqlConnection>(options =>
 new NpgsqlConnection("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;"));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddDependency();
 builder.Services.AddAutoMapper(typeof(AutoMapping));
 builder.Services.AddSingleton(builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>());
+builder.Services.AddSingleton<WebSocketConnectionManager>();
+
 #endregion
 
 #region JWT Authentication
@@ -49,14 +51,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
      options.TokenValidationParameters = new TokenValidationParameters
      {
-         ValidateAudience = true,
-         ValidateIssuer = true,
-         ValidateLifetime = true,
-         ValidateIssuerSigningKey = true,
-         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-         ValidAudience = builder.Configuration["JwtSettings:Audience"],
-         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["KEY_JWT_TIUI"])),
-         ClockSkew = TimeSpan.Zero
+       ValidateAudience = true,
+       ValidateIssuer = true,
+       ValidateLifetime = true,
+       ValidateIssuerSigningKey = true,
+       ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+       ValidAudience = builder.Configuration["JwtSettings:Audience"],
+       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["KEY_JWT_TIUI"])),
+       ClockSkew = TimeSpan.Zero
      });
 #endregion
 
@@ -64,11 +66,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 var MyAllowSpecificOrigins = "_tiuiorigensapp";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      builder =>
-                      {
-                          builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                      });
+  options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                      builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    });
 });
 #endregion
 
@@ -78,13 +80,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseCors(MyAllowSpecificOrigins);
 
 //app.UseHttpsRedirection();
+
+app.UseWebSockets();
 
 app.UseAuthorization();
 

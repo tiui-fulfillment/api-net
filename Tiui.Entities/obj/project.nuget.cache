@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rsret1sdmsdGnI7mgR9ab/LhyBFUPik/mrExC77lYIm7ZwkIkoUzOhFnEBBMIpvBZNCnjsJ87Es5R0HvNZn0AQ==",
+  "dgSpecHash": "qWRzsf1zfFfzIdmm4Pfa0qxt9xZhJZNoX2nxc0Pr34Qd7d828bxZf4sIcx1S79wNcxkSuYm7OlyNI20mnUWR2A==",
   "success": true,
-  "projectFilePath": "/Users/alejandrolopezramirez/Local/tiuiapp/BackEnd/Tiui/Tiui.Entities/Tiui.Entities.csproj",
+  "projectFilePath": "/Users/alejandrolopezramirez/Local/TiuiApiNet/Tiui.Entities/Tiui.Entities.csproj",
   "expectedPackageFiles": [
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/Users/alejandrolopezramirez/.nuget/packages/microsoft.aspnetcore.authentication.core/2.2.0/microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
