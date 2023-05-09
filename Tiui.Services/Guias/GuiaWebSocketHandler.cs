@@ -7,6 +7,8 @@ using System.Text;
 using System.Net.WebSockets;
 using System.Text.Json;
 using System.Collections.Concurrent;
+using Tiui.Application.DTOs.Guias;
+using Tiui.Application.Services.Guias;
 
 namespace Tiui.Services.WebSockets
 {
@@ -17,15 +19,18 @@ namespace Tiui.Services.WebSockets
   {
     private readonly IGuiaRepository _guiaRepository;
     private readonly NpgsqlConnection _connection;
+    private readonly IGuiaService _guiaService;
+    private readonly string _conectionValue;
     private readonly ConcurrentDictionary<string, WebSocket> _sockets = new ConcurrentDictionary<string, WebSocket>();
     private readonly List<GuiaSubscription> _subscriptions;
 
-    public GuiaWebSocketHandler(IGuiaRepository guiaRepository, NpgsqlConnection connection)
+    public GuiaWebSocketHandler(NpgsqlConnection connection, IGuiaService guiaService, IGuiaRepository guiaRepository)
     {
       this._guiaRepository = guiaRepository;
       this._connection = connection;
       this._subscriptions = new List<GuiaSubscription>();
-
+      this._guiaService = guiaService;
+      this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;";
     }
 
     public async Task OnConnectedAsync(WebSocketConnection connection)
@@ -35,7 +40,7 @@ namespace Tiui.Services.WebSockets
       // Agrega la conexión a la lista de sockets activos
       _sockets.TryAdd(connection.ToString(), connection.WebSocket);
 
-      using var conn = new NpgsqlConnection("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;");
+      using var conn = new NpgsqlConnection(this._conectionValue);
       await conn.OpenAsync();
       Console.WriteLine($"🟪Connected to database: {conn.State}");
 
@@ -106,7 +111,7 @@ namespace Tiui.Services.WebSockets
     public async Task StartAsync(CancellationToken cancellationToken)
     {
       Console.WriteLine(this._sockets.Count.ToString());
-      await using var conn = new NpgsqlConnection("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;");
+      await using var conn = new NpgsqlConnection(this._conectionValue);
       await conn.OpenAsync();
       await using var cmd = new NpgsqlCommand("LISTEN guias_update;", conn);
       await cmd.ExecuteNonQueryAsync();
@@ -159,6 +164,74 @@ namespace Tiui.Services.WebSockets
       // Envía un mensaje de confirmación al cliente
       var message = new { type = "subscribe", payload = $"Suscripción a guía {Folio} confirmada" };
       await SendMessageAsync(webSocket, message);
+    }
+    public async Task HandleMessageAsync(WebSocket webSocket, string message)
+    {
+      try
+      {
+        // Deserializa el mensaje a un objeto JSON
+        var subscriptionMessage = JsonSerializer.Deserialize<SubscriptionMessage>(message);
+
+        // Verifica que el objeto JSON tenga los campos Type y Payload
+        if (subscriptionMessage?.Type != null && subscriptionMessage?.Payload != null)
+        {
+          // Aquí puedes agregar la lógica para cada tipo de mensaje
+          switch (subscriptionMessage.Type)
+          {
+            case "suscription":
+              // Lógica para el tipo de mensaje "subscribe"
+              Console.WriteLine($"Mensaje recibido de tipo subscribe: {subscriptionMessage.Payload}");
+              var guia = (await this._guiaRepository.Query(g => g.Folio == subscriptionMessage.Payload)).FirstOrDefault();
+
+              if (guia == null)
+              {
+                // Si la guía no existe, generas un error y terminas la API
+                // Envía un mensaje de bienvenida al cliente
+                var resMessage = new SubscriptionMessage();
+                resMessage.Type = "error";
+                resMessage.Payload = $"La guía {subscriptionMessage.Payload} no existe.";
+                // El objeto JSON no tiene los campos Type y Payload
+                await SendMessageAsync(webSocket, resMessage);
+                break;
+              }
+              Console.WriteLine($"Mensaje recibido de tipo subscribe: {guia.Folio}");
+              break;
+            case "resolver":
+              Console.WriteLine($"Mensaje recibido de tipo subscribe: {subscriptionMessage.Payload}");
+              Console.WriteLine($"Mensaje recibido de tipo resolver: {subscriptionMessage.Payload}");
+              // Lógica para el tipo de mensaje "subscribe"
+              break;
+            default:
+              // Mensaje desconocido
+              // Envía un mensaje de bienvenida al cliente
+              var welcomeMessage = new SubscriptionMessage();
+              welcomeMessage.Type = "error";
+              welcomeMessage.Payload = "Type no reconocido.";
+              // El objeto JSON no tiene los campos Type y Payload
+              await SendMessageAsync(webSocket, welcomeMessage);
+              break;
+          }
+        }
+        else
+        {
+          // Envía un mensaje de bienvenida al cliente
+          var welcomeMessage = new SubscriptionMessage();
+          welcomeMessage.Type = "error";
+          welcomeMessage.Payload = "El objeto JSON recibido no tiene la estructura valida.";
+          // El objeto JSON no tiene los campos Type y Payload
+          await SendMessageAsync(webSocket, welcomeMessage);
+        }
+      }
+      catch (JsonException ex)
+      {
+        // Si se produjo una excepción, entonces el mensaje no es un objeto JSON válido
+        var welcomeMessage = new SubscriptionMessage();
+        welcomeMessage.Type = "error";
+        welcomeMessage.Payload = "El mensaje recibido no es un objeto JSON valido.";
+        // El objeto JSON no tiene los campos Type y Payload
+        await SendMessageAsync(webSocket, welcomeMessage);
+        Console.WriteLine($"JsonException: {ex.Message}");
+      }
     }
   }
 }

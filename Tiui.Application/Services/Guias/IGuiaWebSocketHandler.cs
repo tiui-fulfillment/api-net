@@ -14,5 +14,6 @@ namespace Tiui.Application.Services.websocket
     Task SendMessageAsync(WebSocket webSocket, object message);
     Task SendMessageToAllAsync(object message);
     Task SubscribeToGuiaAsync(string Folio, WebSocket webSocket);
+    Task HandleMessageAsync(WebSocket webSocket, string message);
   }
 }

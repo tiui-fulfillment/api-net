@@ -73,15 +73,15 @@ namespace Tiui.Api.Controllers
         {
           await this._guiaWebSocketHandler.StartAsync(CancellationToken.None
           );
-         /*  while (webSocket.State == WebSocketState.Open)
-          {
-            var message = await webSocket.ReceiveAsync(new ArraySegment<byte>(new byte[1024 * 4]), CancellationToken.None);
-            if (message.MessageType == WebSocketMessageType.Text)
-            {
-              var messageBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new { message = "Hola" }));
-              await webSocket.SendAsync(new ArraySegment<byte>(messageBytes, 0, messageBytes.Length), message.MessageType, message.EndOfMessage, CancellationToken.None);
-            }
-          } */
+          /*  while (webSocket.State == WebSocketState.Open)
+           {
+             var message = await webSocket.ReceiveAsync(new ArraySegment<byte>(new byte[1024 * 4]), CancellationToken.None);
+             if (message.MessageType == WebSocketMessageType.Text)
+             {
+               var messageBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new { message = "Hola" }));
+               await webSocket.SendAsync(new ArraySegment<byte>(messageBytes, 0, messageBytes.Length), message.MessageType, message.EndOfMessage, CancellationToken.None);
+             }
+           } */
         });
 
         Console.WriteLine($"WebSocket Connection Opened: {connectionId}");
@@ -98,8 +98,9 @@ namespace Tiui.Api.Controllers
               var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
               Console.WriteLine($"Received message from client: {message}");
               // Aquí puedes hacer algo con el mensaje recibido
-            }
+              await this._guiaWebSocketHandler.HandleMessageAsync(webSocket, message);
 
+            }
             result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
           }
         }
