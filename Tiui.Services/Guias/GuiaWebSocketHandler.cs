@@ -1,13 +1,10 @@
 using Tiui.Application.Repository.Guias;
 using Tiui.Application.Services.websocket;
-using Tiui.Application.Repository;
-using Tiui.Entities.Guias;
 using Npgsql;
 using System.Text;
 using System.Net.WebSockets;
 using System.Text.Json;
 using System.Collections.Concurrent;
-using Tiui.Application.DTOs.Guias;
 using Tiui.Application.Services.Guias;
 
 namespace Tiui.Services.WebSockets
@@ -56,7 +53,7 @@ namespace Tiui.Services.WebSockets
 
       conn.Notification += async (sender, args) =>
       {
-        Console.WriteLine($"Hola 🛑🟪🟪🟪 {args.ToString()}");
+        Console.WriteLine($"Hola 🛑🟪 {args.ToString()} 🟪🟪, --- {this._subscriptions.ToArray().Length}");
 
         if (args.Channel == "guias_update")
         {
@@ -110,7 +107,6 @@ namespace Tiui.Services.WebSockets
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-      Console.WriteLine(this._sockets.Count.ToString());
       await using var conn = new NpgsqlConnection(this._conectionValue);
       await conn.OpenAsync();
       await using var cmd = new NpgsqlCommand("LISTEN guias_update;", conn);
@@ -119,10 +115,17 @@ namespace Tiui.Services.WebSockets
       {
         if (args.Channel == "guias_update")
         {
-          Console.WriteLine($"La guía 🟥{args.Payload}🟪 ha sido actualizada");
-          // Envia un mensaje WebSocket a todos los clientes conectados
-          await SendMessageToAllAsync($"La guía {args.Payload} ha sido actualizada");
-          Console.WriteLine($"Mensaje WebSocket enviado");
+          var guiaData = JsonSerializer.Deserialize<Dictionary<string, object>>(args.Payload);
+          var resMessage = new SubscriptionMessage();
+          resMessage.Type = "update";
+          resMessage.Payload = args.Payload;
+          foreach (var subscription in _subscriptions)
+          {
+            if (subscription.Folio == guiaData["folio"].ToString())
+            {
+              await SendMessageAsync(subscription.WebSocket, resMessage);
+            }
+          }
         }
       };
 
@@ -159,8 +162,7 @@ namespace Tiui.Services.WebSockets
     {
       // Agrega la suscripción a la lista de suscripciones
       var subscription = new GuiaSubscription { Folio = Folio, WebSocket = webSocket };
-      _subscriptions.Add(subscription);
-
+      this._subscriptions.Add(subscription);
       // Envía un mensaje de confirmación al cliente
       var message = new { type = "subscribe", payload = $"Suscripción a guía {Folio} confirmada" };
       await SendMessageAsync(webSocket, message);
@@ -195,6 +197,9 @@ namespace Tiui.Services.WebSockets
                 break;
               }
               Console.WriteLine($"Mensaje recibido de tipo subscribe: {guia.Folio}");
+              //agregar suscripcion de websocketid + folio
+              await SubscribeToGuiaAsync(guia.Folio, webSocket);
+
               break;
             case "resolver":
               Console.WriteLine($"Mensaje recibido de tipo subscribe: {subscriptionMessage.Payload}");
