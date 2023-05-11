@@ -22,7 +22,7 @@ namespace Tiui.Entities.Comun
         public string NombreContacto { get; set; }
         public Archivo FotoINE { get; set; }
         public long? ArchivoId { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public bool Activo { get; set; }
         public string Codigo { get; set; }
         public ETipoFlujoGuia TipoProceso { get; set; }

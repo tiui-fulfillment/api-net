@@ -9,7 +9,7 @@ namespace Tiui.Entities.Guias
     {
         public long? EvidenciaEntregaId { get; set; }
         public string PersonaRecibe { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now.ToUniversalTime();
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow.ToUniversalTime();
         public Archivo Foto { get; set; }
         public Archivo Firma { get; set; }
         public Paquete Paquete { get; set; }

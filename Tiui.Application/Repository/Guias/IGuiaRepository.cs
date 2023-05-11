@@ -12,5 +12,6 @@ namespace Tiui.Application.Repository.Guias
         public Task<Guia> GetLastGuia(int tiuiAmigoId);
         public Task<List<Guia>> GetGuiaWithFilter(GuiaFilterDTO guiaFilter);
         public Task<List<Guia>> GetGuiaWithFilterAndPaging(GuiaFilterDTO guiaFilter);
+        public Task<GuiaInfoSuscription> GetGuiaInfo(string folio);
     }
 }

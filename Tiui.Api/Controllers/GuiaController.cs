@@ -95,7 +95,7 @@ namespace Tiui.Api.Controllers
           {
             if (result.MessageType == WebSocketMessageType.Text)
             {
-              var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+              var message = Encoding.ASCII.GetString(buffer, 0, result.Count);
               Console.WriteLine($"Received message from client: {message}");
               // Aquí puedes hacer algo con el mensaje recibido
               await this._guiaWebSocketHandler.HandleMessageAsync(webSocket, message);

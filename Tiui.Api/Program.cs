@@ -24,7 +24,7 @@ builder.Host.ConfigureLogging(loggin =>
 #endregion
 
 #region Services
-
+builder.Services.AddSingleton<Encoding>(Encoding.UTF8);
 // Add services to the container.
 builder.Services.AddControllers(options =>
 {

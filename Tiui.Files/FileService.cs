@@ -26,7 +26,7 @@ namespace Tiui.Files
                     continue;
 
                 ZipEntry entry = new ZipEntry(Path.GetFileName(pathFileList[i]));
-                entry.DateTime = DateTime.Now;
+                entry.DateTime = DateTime.UtcNow;
 
                 using (FileStream fs = File.OpenRead(pathFileList[i]))
                 {
@@ -73,7 +73,7 @@ namespace Tiui.Files
                             continue;
 
                         ZipEntry entry = new ZipEntry(Path.GetFileName(pathFileList[i]));
-                        entry.DateTime = DateTime.Now;
+                        entry.DateTime = DateTime.UtcNow;
 
                         using (FileStream fs = File.OpenRead(pathFileList[i]))
                         {
@@ -94,7 +94,7 @@ namespace Tiui.Files
                     foreach (KeyValuePair<string, MemoryStream> elemento in files)
                     {
                         ZipEntry entry = new ZipEntry(elemento.Key);
-                        entry.DateTime = DateTime.Now;
+                        entry.DateTime = DateTime.UtcNow;
 
                         using (MemoryStream entryStream = new MemoryStream())
                         {

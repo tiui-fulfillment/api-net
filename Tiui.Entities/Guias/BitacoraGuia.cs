@@ -10,7 +10,7 @@ namespace Tiui.Entities.Guias
         public long? BitacoraGuiaId { get; set; }
         public EEstatusGuia EstatusAnterior { get; set; }
         public EEstatusGuia EstatusNuevo { get; set; }       
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public Guia Guia { get; set; }
         public long? GuiaId { get; set; }
     }

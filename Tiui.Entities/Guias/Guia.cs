@@ -20,7 +20,7 @@ namespace Tiui.Entities.Guias
         public decimal SubTotal { get; set; }
         public decimal IVA { get; set; }
         public decimal Total { get; set; }
-        public DateTime? FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime? FechaRegistro { get; set; } = DateTime.UtcNow;
         public Remitente Remitente { get; set; }
         public Destinatario Destinatario { get; set; }
         public Paquete Paquete { get; set; }
@@ -41,6 +41,9 @@ namespace Tiui.Entities.Guias
         public string ProcesoCancelacion { get; set; }
         public DateTime? FechaReagendado { get; set; }
         public DateTime? FechaConciliacion { get; set; }
+        public bool EsDevolucion { get; set; }
+        public bool RequiereVerificacion { get; set; }
+        public string FolioDevolucion { get; set; }
 
         /// <summary>
         /// Genera y establece el folio para la guía actual
@@ -51,7 +54,7 @@ namespace Tiui.Entities.Guias
         /// <exception cref="NotImplementedException"></exception>
         public void SetFollio(string codigo, int random, int consecutivo)
         {
-            this.Folio = $"{codigo}-{random.ToString("00")}-{consecutivo.ToString("0000")}";
+            this.Folio = $"{codigo}_{random.ToString("00")}_{consecutivo.ToString("0000")}";
         }
         [NotMapped]
         public BaseState CurrenteState { get; set; }

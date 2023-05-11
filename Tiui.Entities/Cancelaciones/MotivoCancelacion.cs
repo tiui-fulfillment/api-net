@@ -7,7 +7,7 @@
     {
         public int MotivoCancelacionId { get; set; }
         public string Descripcion { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public bool Activo { get; set; }
         public ETipoCancelacion TipoCancelacion { get; set; }
     }

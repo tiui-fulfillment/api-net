@@ -8,7 +8,7 @@ namespace Tiui.Entities.Cancelaciones
     public class CancelacionGuia
     {
         public int? CancelacionGuiaId { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public string Observacion { get; set; }
         public long? GuiaId { get; set; }
         public Guia Guia { get; set; }

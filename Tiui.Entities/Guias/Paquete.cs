@@ -15,7 +15,7 @@ namespace Tiui.Entities.Guias
         public float PesoCotizado { get; set; }        
         public EvidenciaEntrega EvidenciaEntrega { get; set; }
         public int? EvidenciaEntregaId { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public Guia Guia { get; set; }
         /// <summary>
         /// Obtiene las descripción de las medidas del paquete

@@ -10,7 +10,7 @@
         public string Password { get; set; }
         public string Salt { get; set; }
         public string NombreCompleto { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public DateTime FechaModificacion { get; set; }
         public bool Activo { get; set; }
         public ETipoUsuario TipoUsuario { get; set; }

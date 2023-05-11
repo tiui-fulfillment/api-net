@@ -83,9 +83,9 @@ namespace Tiui.Services.Guias
             if (paqueteria == null)
                 throw new BusinessRuleException("La paqueteria asociada a la guía no esta registrada");
             guia.Paquete.PaqueteId = null;
-            guia.Paquete.FechaRegistro = DateTime.Now;
-            guia.FechaRegistro = DateTime.Now;
-            guia.FechaEstimadaEntrega = DateTime.Now.AddDays(paqueteria.MaximoDiasDeEntrega);
+            guia.Paquete.FechaRegistro = DateTime.UtcNow;
+            guia.FechaRegistro = DateTime.UtcNow;
+            guia.FechaEstimadaEntrega = DateTime.UtcNow.AddDays(paqueteria.MaximoDiasDeEntrega);
             guia = await this.GetGuiaWithFolioAndConsecutivo(guia);
             return guia;
         }
@@ -173,7 +173,7 @@ namespace Tiui.Services.Guias
             {
                 EstatusAnterior = (EEstatusGuia)guia.EstatusId,
                 EstatusNuevo = (EEstatusGuia)guia.EstatusId,
-                FechaRegistro = DateTime.Now,
+                FechaRegistro = DateTime.UtcNow,
                 Guia = guia,
                 GuiaId = guia.GuiaId
             };

@@ -149,7 +149,7 @@ namespace Tiui.Services.Seguridad
             return new Usuario()
             {
                 NombreCompleto = $"{usuarioTiuiAmigo.Nombre} {usuarioTiuiAmigo.Apellidos}",
-                FechaModificacion = DateTime.Now,
+                FechaModificacion = DateTime.UtcNow,
                 Activo = true,
                 NombreUsuario = usuarioTiuiAmigo.CorreoElectronico,
                 TipoUsuario = ETipoUsuario.AMIGOTIUI,

@@ -6,3 +6,9 @@ public class SubscriptionMessage
     public string Payload { get; set; }
 }
 
+public class SubscriptionMessageGuiaInfo
+{
+    public string Type { get; set; }
+    public GuiaInfoSuscription Payload { get; set; }
+}
+

@@ -10,7 +10,7 @@
         public decimal CostoEnvio { get; set; }
         public string Descripcion { get; set; }
         public bool Activo { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
         public int MaximoDiasDeEntrega { get; set; }
     }
 }

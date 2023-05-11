@@ -89,7 +89,7 @@ namespace Tiui.Services.Guias
       {
         EstatusAnterior = estatusAnterior,
         EstatusNuevo = (EEstatusGuia)guia.EstatusId,
-        FechaRegistro = DateTime.Now,
+        FechaRegistro = DateTime.UtcNow,
         GuiaId = guia.GuiaId
       };
       var bitacoraRepository = this._unitOfWork.Repository<BitacoraGuia>();
@@ -105,7 +105,7 @@ namespace Tiui.Services.Guias
       {
         GuiaId = guia.GuiaId,
         MotivoCancelacionId = cancelState.MotivoCancelacion.MotivoCancelacionId,
-        FechaRegistro = DateTime.Now,
+        FechaRegistro = DateTime.UtcNow,
         Observacion = this.GetMenssageCancelacion(cancelState.MotivoCancelacion)
       };
       var repository = this._unitOfWork.Repository<CancelacionGuia>();

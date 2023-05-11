@@ -6,6 +6,7 @@ using System.Net.WebSockets;
 using System.Text.Json;
 using System.Collections.Concurrent;
 using Tiui.Application.Services.Guias;
+using System.Text.Encodings.Web;
 
 namespace Tiui.Services.WebSockets
 {
@@ -18,6 +19,7 @@ namespace Tiui.Services.WebSockets
     private readonly NpgsqlConnection _connection;
     private readonly IGuiaService _guiaService;
     private readonly string _conectionValue;
+    private readonly JsonSerializerOptions _optionsJSON;
     private readonly ConcurrentDictionary<string, WebSocket> _sockets = new ConcurrentDictionary<string, WebSocket>();
     private readonly List<GuiaSubscription> _subscriptions;
 
@@ -28,6 +30,10 @@ namespace Tiui.Services.WebSockets
       this._subscriptions = new List<GuiaSubscription>();
       this._guiaService = guiaService;
       this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;";
+      this._optionsJSON = new JsonSerializerOptions
+      {
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+      };
     }
 
     public async Task OnConnectedAsync(WebSocketConnection connection)
@@ -48,27 +54,8 @@ namespace Tiui.Services.WebSockets
       // Envía un mensaje de bienvenida al cliente
       var welcomeMessage = new SubscriptionMessage();
       welcomeMessage.Type = "message";
-      welcomeMessage.Payload = "Bienvenido al WebSocket de Tiui";
-      await SendMessageToAllAsync(welcomeMessage);
-
-      conn.Notification += async (sender, args) =>
-      {
-        Console.WriteLine($"Hola 🛑🟪 {args.ToString()} 🟪🟪, --- {this._subscriptions.ToArray().Length}");
-
-        if (args.Channel == "guias_update")
-        {
-          Console.WriteLine($"La guía 🟥{args.Payload}🟪 ha sido actualizada");
-
-          // Envia un mensaje WebSocket a todos los clientes conectados
-          var message = new { type = "guid-update", payload = $"La guía {args.Payload} ha sido actualizada" };
-          await SendMessageToAllAsync(message);
-
-          Console.WriteLine($"Mensaje WebSocket enviado");
-        }
-      };
-
-      //await conn.WaitAsync(); // No bloquea el hilo principal
-
+      welcomeMessage.Payload = "Bienvenido al WebSocket de Tiui 🚚📦💪🏼";
+      await SendMessageAsync(connection.WebSocket, JsonSerializer.Serialize(welcomeMessage, this._optionsJSON));
       Console.WriteLine($"🟪Connected to database: {conn.State}");
     }
 
@@ -76,7 +63,10 @@ namespace Tiui.Services.WebSockets
     {
       // Aquí puedes agregar lógica para manejar la desconexión cuando un cliente se desconecta del WebSocket
       Console.WriteLine($"Connection 🟥{connection.WebSocket.State}🟪");
-      //await connection.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Connection closed", CancellationToken.None);
+      await connection.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Connection closed", CancellationToken.None);
+      var message = new SubscriptionMessage();
+      message.Type = "message";
+      message.Payload = "Desconectado del WebSocket de Tiui 🚚📦💪🏼";
     }
 
     public async Task OnMessageReceivedAsync(WebSocketConnection connection, string message)
@@ -115,15 +105,21 @@ namespace Tiui.Services.WebSockets
       {
         if (args.Channel == "guias_update")
         {
-          var guiaData = JsonSerializer.Deserialize<Dictionary<string, object>>(args.Payload);
-          var resMessage = new SubscriptionMessage();
+          var guiaData = JsonSerializer.Deserialize<GuiaInfoSuscription>(args.Payload);
+          var resMessage = new SubscriptionMessageGuiaInfo();
           resMessage.Type = "update";
-          resMessage.Payload = args.Payload;
+          // Deserializar el objeto GuiaInfoSuscription desde la carga útil de args
+          var guiaInfoSuscription = guiaData;
+          // Convertir el objeto a una cadena JSON
+          var jsonString = JsonSerializer.Serialize<GuiaInfoSuscription>(guiaInfoSuscription, this._optionsJSON);
+
+          // Asignar la cadena JSON a la propiedad Payload del objeto resMessage
+          resMessage.Payload = guiaInfoSuscription;
           foreach (var subscription in _subscriptions)
           {
-            if (subscription.Folio == guiaData["folio"].ToString())
+            if (subscription.Folio == guiaData.Folio.ToString())
             {
-              await SendMessageAsync(subscription.WebSocket, resMessage);
+              await SendMessageAsync(subscription.WebSocket, JsonSerializer.Serialize(resMessage, this._optionsJSON));
             }
           }
         }
@@ -137,7 +133,7 @@ namespace Tiui.Services.WebSockets
     public async Task SendMessageToAllAsync(object message)
     {
       // Serializa el objeto en JSON
-      var jsonMessage = JsonSerializer.Serialize(message);
+      var jsonMessage = JsonSerializer.Serialize(message, this._optionsJSON);
 
       // Envia el mensaje a cada conexión activa en la lista de sockets
       foreach (var socket in _sockets)
@@ -149,13 +145,10 @@ namespace Tiui.Services.WebSockets
       }
     }
 
-    public async Task SendMessageAsync(WebSocket webSocket, object message)
+    public async Task SendMessageAsync(WebSocket webSocket, string message)
     {
-      // Serializa el objeto en JSON
-      var jsonMessage = JsonSerializer.Serialize(message);
-
       // Envia el mensaje al cliente
-      await webSocket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(jsonMessage)), WebSocketMessageType.Text, true, CancellationToken.None);
+      await webSocket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(message)), WebSocketMessageType.Text, true, CancellationToken.None);
     }
 
     public async Task SubscribeToGuiaAsync(string Folio, WebSocket webSocket)
@@ -165,7 +158,7 @@ namespace Tiui.Services.WebSockets
       this._subscriptions.Add(subscription);
       // Envía un mensaje de confirmación al cliente
       var message = new { type = "subscribe", payload = $"Suscripción a guía {Folio} confirmada" };
-      await SendMessageAsync(webSocket, message);
+      await SendMessageAsync(webSocket, JsonSerializer.Serialize(message, this._optionsJSON));
     }
     public async Task HandleMessageAsync(WebSocket webSocket, string message)
     {
@@ -193,13 +186,35 @@ namespace Tiui.Services.WebSockets
                 resMessage.Type = "error";
                 resMessage.Payload = $"La guía {subscriptionMessage.Payload} no existe.";
                 // El objeto JSON no tiene los campos Type y Payload
-                await SendMessageAsync(webSocket, resMessage);
+                await SendMessageAsync(webSocket, JsonSerializer.Serialize(resMessage, this._optionsJSON));
                 break;
               }
               Console.WriteLine($"Mensaje recibido de tipo subscribe: {guia.Folio}");
               //agregar suscripcion de websocketid + folio
               await SubscribeToGuiaAsync(guia.Folio, webSocket);
 
+              break;
+            case "consult":
+              var _guia = (await this._guiaRepository.GetGuiaInfo(subscriptionMessage.Payload));
+
+              if (_guia == null)
+              {
+                // Si la guía no existe, generas un error y terminas la API
+                // Envía un mensaje de bienvenida al cliente
+                var resMessage = new SubscriptionMessage();
+                resMessage.Type = "error";
+                resMessage.Payload = $"La guía {subscriptionMessage.Payload} no existe.";
+                // El objeto JSON no tiene los campos Type y Payload
+                await SendMessageAsync(webSocket, JsonSerializer.Serialize(resMessage, this._optionsJSON));
+                break;
+              }
+              // Lógica para el tipo de mensaje "subscribe"
+              var resMessageConsult = new SubscriptionMessageGuiaInfo();
+              resMessageConsult.Type = "consult";
+              // Deserializar el objeto GuiaInfoSuscription desde la carga útil de args
+              resMessageConsult.Payload = _guia;
+              // Enviar Mensaje
+              await SendMessageAsync(webSocket, JsonSerializer.Serialize(resMessageConsult, this._optionsJSON));
               break;
             case "resolver":
               Console.WriteLine($"Mensaje recibido de tipo subscribe: {subscriptionMessage.Payload}");
@@ -213,7 +228,7 @@ namespace Tiui.Services.WebSockets
               welcomeMessage.Type = "error";
               welcomeMessage.Payload = "Type no reconocido.";
               // El objeto JSON no tiene los campos Type y Payload
-              await SendMessageAsync(webSocket, welcomeMessage);
+              await SendMessageAsync(webSocket, JsonSerializer.Serialize(welcomeMessage, this._optionsJSON));
               break;
           }
         }
@@ -224,7 +239,7 @@ namespace Tiui.Services.WebSockets
           welcomeMessage.Type = "error";
           welcomeMessage.Payload = "El objeto JSON recibido no tiene la estructura valida.";
           // El objeto JSON no tiene los campos Type y Payload
-          await SendMessageAsync(webSocket, welcomeMessage);
+          await SendMessageAsync(webSocket, JsonSerializer.Serialize(welcomeMessage, this._optionsJSON));
         }
       }
       catch (JsonException ex)
@@ -234,7 +249,7 @@ namespace Tiui.Services.WebSockets
         welcomeMessage.Type = "error";
         welcomeMessage.Payload = "El mensaje recibido no es un objeto JSON valido.";
         // El objeto JSON no tiene los campos Type y Payload
-        await SendMessageAsync(webSocket, welcomeMessage);
+        await SendMessageAsync(webSocket, JsonSerializer.Serialize(welcomeMessage, this._optionsJSON));
         Console.WriteLine($"JsonException: {ex.Message}");
       }
     }

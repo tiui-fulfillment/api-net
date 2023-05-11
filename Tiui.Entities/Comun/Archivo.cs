@@ -13,7 +13,7 @@ namespace Tiui.Entities.Comun
         public string Nombre { get; set; }
         public string NombreReal { get; set; }
         public string MimeType { get; set; }
-        public DateTime FechaRegistro { get; set; } = DateTime.Now.ToUniversalTime();
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow.ToUniversalTime();
         public string Tag { get; set; }
         [NotMapped]
         public string Data { get; set; }
