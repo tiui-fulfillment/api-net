@@ -6,6 +6,6 @@
     public class Remitente : DireccionGuia
     {       
         public Guia Guia { get; set; }
-        public long? GuiaId { get; set; }
+        public new long? GuiaId { get; set; }
     }
 }

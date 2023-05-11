@@ -31,7 +31,7 @@ namespace Tiui.Data
         public DbSet<Paquete> Paquetes { get; set; }
         public DbSet<Guia> Guias { get; set; }
 
-        public DbSet<GuiaInfoSuscription> GuiaInfoSuscription { get; set; }
+        public DbSet<GuiaInfoSuscriptionDTO> guiainfosuscription { get; set; }
         public DbSet<BitacoraGuia> BitacoraGuias { get; set; }
         public DbSet<NotificacionCliente> NotificacionClientes { get; set; }
         public DbSet<DireccionGuia> DireccionesGuia { get; set; }
@@ -75,7 +75,7 @@ namespace Tiui.Data
             modelBuilder.Entity<TiuiAmigo>().HasIndex(x => x.Codigo).IsUnique();
             modelBuilder.Entity<Guia>().HasIndex(x => x.Folio).IsUnique();
             modelBuilder.Entity<Evidencia>().HasIndex(x => x.id).IsUnique();
-            modelBuilder.Entity<GuiaInfoSuscription>().HasIndex(x => x.GuiaId).IsUnique();
+            modelBuilder.Entity<GuiaInfoSuscriptionDTO>().HasIndex(x => x.GuiaId).IsUnique();
             modelBuilder.Entity<Direccion>().HasIndex(x => x.DireccionGuiaId).IsUnique();
 
             InitConfiguration(modelBuilder);

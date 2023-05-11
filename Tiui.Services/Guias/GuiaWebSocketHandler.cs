@@ -108,13 +108,10 @@ namespace Tiui.Services.WebSockets
           var guiaData = JsonSerializer.Deserialize<GuiaInfoSuscription>(args.Payload);
           var resMessage = new SubscriptionMessageGuiaInfo();
           resMessage.Type = "update";
-          // Deserializar el objeto GuiaInfoSuscription desde la carga útil de args
-          var guiaInfoSuscription = guiaData;
-          // Convertir el objeto a una cadena JSON
-          var jsonString = JsonSerializer.Serialize<GuiaInfoSuscription>(guiaInfoSuscription, this._optionsJSON);
+          var jsonString = guiaData;
 
           // Asignar la cadena JSON a la propiedad Payload del objeto resMessage
-          resMessage.Payload = guiaInfoSuscription;
+          resMessage.Payload = jsonString;
           foreach (var subscription in _subscriptions)
           {
             if (subscription.Folio == guiaData.Folio.ToString())
@@ -194,10 +191,9 @@ namespace Tiui.Services.WebSockets
               await SubscribeToGuiaAsync(guia.Folio, webSocket);
 
               break;
-            case "consult":
-              var _guia = (await this._guiaRepository.GetGuiaInfo(subscriptionMessage.Payload));
-
-              if (_guia == null)
+            case "guia":
+              var guiaDto = (await this._guiaRepository.GetGuiaInfo(subscriptionMessage.Payload));
+              if (guiaDto == null)
               {
                 // Si la guía no existe, generas un error y terminas la API
                 // Envía un mensaje de bienvenida al cliente
@@ -208,9 +204,60 @@ namespace Tiui.Services.WebSockets
                 await SendMessageAsync(webSocket, JsonSerializer.Serialize(resMessage, this._optionsJSON));
                 break;
               }
+              // Obtener el arreglo JSON como una cadena
+ // Obtener el arreglo JSON como una cadena
+          string[] evidenciasJsonArray = guiaDto.Evidencias;
+
+          // Deserializar cada elemento del arreglo en un objeto Evidencia
+          List<Evidencia> evidencias = new List<Evidencia>();
+          foreach (string evidenciaJson in evidenciasJsonArray)
+          {
+            Evidencia evidencia = JsonSerializer.Deserialize<Evidencia>(evidenciaJson);
+            evidencias.Add(evidencia);
+          }
+              var _guia = new GuiaInfoSuscription
+              {
+                GuiaId = guiaDto.GuiaId,
+                Folio = guiaDto.Folio,
+                EstatusId = guiaDto.EstatusId,
+                Estatus = guiaDto.Estatus,
+                CantidadPaquetes = guiaDto.CantidadPaquetes,
+                CobroContraEntrega = guiaDto.CobroContraEntrega,
+                Comentario = guiaDto.Comentario,
+                EsDevolucion = guiaDto.EsDevolucion,
+                Consecutivo = guiaDto.Consecutivo,
+                CostoOperativo = guiaDto.CostoOperativo,
+                EsPagoContraEntrega = guiaDto.EsPagoContraEntrega,
+                EstatusFecha = guiaDto.EstatusFecha,
+                FechaConciliacion = guiaDto.FechaConciliacion,
+                FechaEstimadaEntrega = guiaDto.FechaEstimadaEntrega,
+                FechaReagendado = guiaDto.FechaReagendado,
+                FolioDevolucion = guiaDto.FolioDevolucion,
+                ImporteCalculoSeguro = guiaDto.ImporteCalculoSeguro,
+                ImporteContraEntrega = guiaDto.ImporteContraEntrega,
+                ImportePaqueteria = guiaDto.ImportePaqueteria,
+                ImporteSeguroMercancia = guiaDto.ImporteSeguroMercancia,
+                IntentosDeEntrega = guiaDto.IntentosDeEntrega,
+                IntentosRecoleccion = guiaDto.IntentosRecoleccion,
+                IVA = guiaDto.IVA,
+                NombreProducto = guiaDto.NombreProducto,
+                NovedadDescripcion = guiaDto.NovedadDescripcion,
+                NovedadId = guiaDto.NovedadId,
+                PaqueteId = guiaDto.PaqueteId,
+                ProcesoCancelacion = guiaDto.ProcesoCancelacion,
+                PaqueteriaId = guiaDto.PaqueteriaId,
+                RequiereVerificacion = guiaDto.RequiereVerificacion,
+                SubTotal = guiaDto.SubTotal,
+                TieneSeguroMercancia = guiaDto.TieneSeguroMercancia,
+                TipoProcesoCancelacion = guiaDto.TipoProcesoCancelacion,
+                Total = guiaDto.Total,
+                Destinatario = JsonSerializer.Deserialize<Direccion>(guiaDto.Destinatario),
+                Remitente = JsonSerializer.Deserialize<Direccion>(guiaDto.Remitente),
+                Evidencias = evidencias
+          };
               // Lógica para el tipo de mensaje "subscribe"
               var resMessageConsult = new SubscriptionMessageGuiaInfo();
-              resMessageConsult.Type = "consult";
+              resMessageConsult.Type = "guia";
               // Deserializar el objeto GuiaInfoSuscription desde la carga útil de args
               resMessageConsult.Payload = _guia;
               // Enviar Mensaje
