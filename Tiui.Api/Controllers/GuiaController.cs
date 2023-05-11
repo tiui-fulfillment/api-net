@@ -60,7 +60,7 @@ namespace Tiui.Api.Controllers
     {
       return await this._guiaService.GetGuia(guaId);
     }
-    [AllowAnonymous]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpGet("ws")]
     public async Task GetGuiaWS()
     {
@@ -73,15 +73,6 @@ namespace Tiui.Api.Controllers
         {
           await this._guiaWebSocketHandler.StartAsync(CancellationToken.None
           );
-          /*  while (webSocket.State == WebSocketState.Open)
-           {
-             var message = await webSocket.ReceiveAsync(new ArraySegment<byte>(new byte[1024 * 4]), CancellationToken.None);
-             if (message.MessageType == WebSocketMessageType.Text)
-             {
-               var messageBytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new { message = "Hola" }));
-               await webSocket.SendAsync(new ArraySegment<byte>(messageBytes, 0, messageBytes.Length), message.MessageType, message.EndOfMessage, CancellationToken.None);
-             }
-           } */
         });
 
         Console.WriteLine($"WebSocket Connection Opened: {connectionId}");

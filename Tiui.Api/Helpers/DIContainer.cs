@@ -64,7 +64,6 @@ namespace Tiui.Api.Helpers
             services.AddScoped<ILocalizacionService, LocalizacionService>();
             services.AddScoped<IPaqueteriaService, PaqueteriaService>();
             services.AddScoped<IGuiaService, GuiaService>();
-            services.AddScoped<IGuiaWebSocketHandler, GuiaWebSocketHandler>();
             services.AddScoped<IDireccionService, DireccionService>();
             services.AddScoped<IConfiguracionCajaTiuiAmigoService, ConfiguracionCajaTiuiAmigoService>();
             services.AddScoped<IConfiguracionAppService, ConfiguracionAppService>();
@@ -75,6 +74,7 @@ namespace Tiui.Api.Helpers
             services.AddScoped<IMotivoCancelacionService, MotivoCancelacionService>();
             services.AddScoped<IUsuarioAdminService, UsuarioAdminService>();
             services.AddScoped<IGuiaMasiveService, GuiaMasiveService>();
+            services.AddScoped<IGuiaWebSocketHandler, GuiaWebSocketHandler>();
             #endregion
             #region Reports
             services.AddScoped<IGuiaReport, GuiaReport>();
