@@ -1,2 +1,9 @@
 Tiui.Api/Logs/Log*.txt
 *.cache
+/*/bin/
+/*/bin/Debug/
+/*/bin/Release/
+/*/obj/
+/*/obj/Debug/
+/*/obj/Release/
+/*/Logs/

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Reporting.NETCore;
+using System;
 using System.Data;
+using System.IO;
 using Tiui.Application.DTOs.Reports;
 using Tiui.Application.Reports;
 using Tiui.Reports.DataAccess;

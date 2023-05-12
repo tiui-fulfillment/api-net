@@ -7,6 +7,11 @@ using System.Text.Json;
 using System.Collections.Concurrent;
 using Tiui.Application.Services.Guias;
 using System.Text.Encodings.Web;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Linq;
 
 namespace Tiui.Services.WebSockets
 {

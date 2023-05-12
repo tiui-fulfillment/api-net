@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Tiui.Application.DTOs.Guias;
 using Tiui.Application.Repository.Guias;
 using Tiui.Entities.Guias;

@@ -1,4 +1,6 @@
-﻿namespace Tiui.Entities.Seguridad
+﻿using System;
+
+namespace Tiui.Entities.Seguridad
 {
     /// <summary>
     /// Entidad para el manejo de los usuarios

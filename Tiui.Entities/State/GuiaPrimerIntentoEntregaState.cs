@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tiui.Entities.Guias;
 using Tiui.Patterns.Behavior;
 using Tiui.Utils.Exceptions;

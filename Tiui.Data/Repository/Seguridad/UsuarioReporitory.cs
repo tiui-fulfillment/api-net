@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Tiui.Application.Repository.Seguridad;
 using Tiui.Entities.Comun;
 using Tiui.Entities.Seguridad;

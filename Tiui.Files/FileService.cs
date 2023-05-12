@@ -1,7 +1,10 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
+using System.Collections.Generic;
 /* using QRCoder; */
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using Tiui.Application.File;
 
 namespace Tiui.Files

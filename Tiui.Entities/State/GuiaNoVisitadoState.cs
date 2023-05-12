@@ -1,4 +1,5 @@
-﻿using Tiui.Entities.Guias;
+﻿using System;
+using Tiui.Entities.Guias;
 using Tiui.Patterns.Behavior;
 using Tiui.Utils.Exceptions;
 

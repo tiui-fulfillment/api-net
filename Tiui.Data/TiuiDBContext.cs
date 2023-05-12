@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Tiui.Entities.Cancelaciones;
 using Tiui.Entities.Comun;
 using Tiui.Entities.Guias;

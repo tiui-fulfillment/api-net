@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using Tiui.Application.DTOs.Comun;
 using Tiui.Application.Repository.Comun;
 using Tiui.Application.Services.Comun;

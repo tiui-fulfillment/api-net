@@ -1,4 +1,5 @@
-﻿using Tiui.Entities.Cancelaciones;
+﻿using System;
+using Tiui.Entities.Cancelaciones;
 using Tiui.Entities.Guias;
 using Tiui.Patterns.Behavior;
 

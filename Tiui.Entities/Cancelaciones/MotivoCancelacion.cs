@@ -1,4 +1,6 @@
-﻿namespace Tiui.Entities.Cancelaciones
+﻿using System;
+
+namespace Tiui.Entities.Cancelaciones
 {
     /// <summary>
     /// Clase para el manejo de los tipos de cancelación

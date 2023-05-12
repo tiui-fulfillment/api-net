@@ -1,4 +1,8 @@
-﻿namespace Tiui.Utils.Paging
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Tiui.Utils.Paging
 {
     public abstract class PagedList<T>
     {

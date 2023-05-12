@@ -1,4 +1,6 @@
-﻿namespace Tiui.Entities.Guias
+﻿using System;
+
+namespace Tiui.Entities.Guias
 {
     /// <summary>
     /// Entidad para el manejo de las paqueterias

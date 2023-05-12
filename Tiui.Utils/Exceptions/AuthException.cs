@@ -1,4 +1,6 @@
-﻿namespace Tiui.Utils.Exceptions
+﻿using System;
+
+namespace Tiui.Utils.Exceptions
 {
     /// <summary>
     /// Clase para el manejo de las excepciones por autorización y/o autenticación

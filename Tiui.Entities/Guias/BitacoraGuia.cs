@@ -1,4 +1,5 @@
-﻿using Tiui.Entities.Comun;
+﻿using System;
+using Tiui.Entities.Comun;
 
 namespace Tiui.Entities.Guias
 {

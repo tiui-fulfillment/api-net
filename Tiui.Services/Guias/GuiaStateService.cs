@@ -11,6 +11,11 @@ using Tiui.Entities.Cancelaciones;
 using Tiui.Entities.Guias;
 using Tiui.Entities.State;
 using Tiui.Utils.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Linq;
 
 namespace Tiui.Services.Guias
 {

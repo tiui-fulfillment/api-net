@@ -1,4 +1,6 @@
-﻿using Tiui.Entities.Comun;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Tiui.Entities.Comun;
 using Tiui.Entities.Guias;
 
 namespace Tiui.Entities.State

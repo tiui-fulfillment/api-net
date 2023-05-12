@@ -1,4 +1,6 @@
-﻿using Tiui.Application.Repository.Guias;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Tiui.Application.Repository.Guias;
 using Tiui.Entities.Guias;
 
 namespace Tiui.Reports.DataAccess

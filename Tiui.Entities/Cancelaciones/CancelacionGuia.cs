@@ -1,4 +1,5 @@
-﻿using Tiui.Entities.Guias;
+﻿using System;
+using Tiui.Entities.Guias;
 
 namespace Tiui.Entities.Cancelaciones
 {

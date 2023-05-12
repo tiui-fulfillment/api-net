@@ -11,6 +11,11 @@ using Tiui.Application.Services.Guias;
 using Tiui.Entities.Comun;
 using Tiui.Entities.Guias;
 using Tiui.Utils.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Linq;
 
 namespace Tiui.Services.Guias
 {

@@ -1,4 +1,6 @@
-﻿namespace Tiui.Entities.Guias
+﻿using System;
+
+namespace Tiui.Entities.Guias
 {
   /// <summary>
   /// Entidad para el manejo de destinatario y remitente de la guía
@@ -25,10 +27,10 @@
     public decimal Latitud { get; set; }
     public decimal Longitud { get; set; }
     public bool google_validate { get; set; }
-    public string google_error { get; set; }
+    public bool google_error { get; set; }
     public bool? edited { get; set; }
     public string act_user { get; set; }
     public DateTime? act_date { get; set; }
-    public string act_type { get; set; }
+    public char act_type { get; set; }
   }
 }

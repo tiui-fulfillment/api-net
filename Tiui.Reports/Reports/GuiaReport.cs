@@ -1,5 +1,8 @@
 ﻿using Microsoft.Reporting.NETCore;
+using System;
 using System.Data;
+using System.IO;
+using System.Threading.Tasks;
 using Tiui.Application.File;
 using Tiui.Application.Reports;
 using Tiui.Entities.Guias;
