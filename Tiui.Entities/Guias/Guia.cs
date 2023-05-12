@@ -55,7 +55,7 @@ namespace Tiui.Entities.Guias
         /// <exception cref="NotImplementedException"></exception>
         public void SetFollio(string codigo, int random, int consecutivo)
         {
-            this.Folio = $"{codigo}_{random.ToString("00")}_{consecutivo.ToString("0000")}";
+            this.Folio = $"{codigo}*{random.ToString("00")}*{consecutivo.ToString("0000")}";
         }
         [NotMapped]
         public BaseState CurrenteState { get; set; }

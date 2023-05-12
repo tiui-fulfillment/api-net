@@ -20,27 +20,23 @@ namespace Tiui.Services.WebSockets
   /// </summary>
   public class GuiaWebSocketHandler : IGuiaWebSocketHandler
   {
-    private readonly IGuiaRepository _guiaRepository;
+    private readonly IGuiaInfoSuscriptionRepository _guiaInfoSuscriptionRepository;
     private readonly NpgsqlConnection _connection;
-    private readonly IGuiaService _guiaService;
     private readonly string _conectionValue;
     private readonly JsonSerializerOptions _optionsJSON;
     private readonly ConcurrentDictionary<string, WebSocket> _sockets = new ConcurrentDictionary<string, WebSocket>();
     private readonly List<GuiaSubscription> _subscriptions;
 
-    public GuiaWebSocketHandler(NpgsqlConnection connection, IGuiaService guiaService, IGuiaRepository guiaRepository)
+    public GuiaWebSocketHandler(NpgsqlConnection connection, IGuiaInfoSuscriptionRepository guiaInfoSuscriptionRepositoryRepository)
     {
-      this._guiaRepository = guiaRepository;
+      this._guiaInfoSuscriptionRepository = guiaInfoSuscriptionRepositoryRepository;
       this._connection = connection;
       this._subscriptions = new List<GuiaSubscription>();
-      this._guiaService = guiaService;
       this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;";
-      this._optionsJSON = new JsonSerializerOptions
+            this._optionsJSON = new JsonSerializerOptions
       {
-        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-      };
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,      };
     }
-
     public async Task OnConnectedAsync(WebSocketConnection connection)
     {
       Console.WriteLine($"Connection 🟥{connection.WebSocket.State}🟪");
@@ -178,7 +174,7 @@ namespace Tiui.Services.WebSockets
             case "suscription":
               // Lógica para el tipo de mensaje "subscribe"
               Console.WriteLine($"Mensaje recibido de tipo subscribe: {subscriptionMessage.Payload}");
-              var guia = (await this._guiaRepository.Query(g => g.Folio == subscriptionMessage.Payload)).FirstOrDefault();
+              var guia = (await this._guiaInfoSuscriptionRepository.Query(g => g.Folio == subscriptionMessage.Payload)).FirstOrDefault();
 
               if (guia == null)
               {
@@ -197,7 +193,7 @@ namespace Tiui.Services.WebSockets
 
               break;
             case "guia":
-              var guiaDto = (await this._guiaRepository.GetGuiaInfo(subscriptionMessage.Payload));
+              var guiaDto = (await this._guiaInfoSuscriptionRepository.GetGuiaInfo(subscriptionMessage.Payload));
               if (guiaDto == null)
               {
                 // Si la guía no existe, generas un error y terminas la API

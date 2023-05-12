@@ -18,7 +18,8 @@ namespace Tiui.Data
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Municipio> Municipios { get; set; }
-        public DbSet<Direccion> Direcciones { get; set; }
+        public DbSet<Direccion> Direcciones { get; set; }                public DbSet<GuiaInfoSuscriptionDTO> guiainfosuscription { get; set; }
+
         #endregion
 
         #region Clientes
@@ -31,8 +32,6 @@ namespace Tiui.Data
         public DbSet<Paqueteria> Paqueterias { get; set; }
         public DbSet<Paquete> Paquetes { get; set; }
         public DbSet<Guia> Guias { get; set; }
-
-        public DbSet<GuiaInfoSuscriptionDTO> guiainfosuscription { get; set; }
         public DbSet<BitacoraGuia> BitacoraGuias { get; set; }
         public DbSet<NotificacionCliente> NotificacionClientes { get; set; }
         public DbSet<DireccionGuia> DireccionesGuia { get; set; }

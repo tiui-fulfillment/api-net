@@ -68,10 +68,5 @@ namespace Tiui.Data.Repository.Guias
         {
             return await this._context.Guias.Where(g => g.TiuiAmigoId == tiuiAmigoId).Include(g => g.TiuiAmigo).OrderBy(g => g.Consecutivo).LastOrDefaultAsync();
         }
- 
-        public async Task<GuiaInfoSuscriptionDTO> GetGuiaInfo(string folio)
-        {
-            return await this._context.guiainfosuscription.Where(g => g.Folio.Equals(folio)).FirstOrDefaultAsync();
-        }
     }
 }
