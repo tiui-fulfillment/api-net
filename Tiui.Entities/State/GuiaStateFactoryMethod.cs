@@ -81,6 +81,21 @@ namespace Tiui.Entities.State
                 case EEstatusGuia.PREPARANDO_RUTA:
                     baseState = new GuiaPreparcionDeRutaState(guia);
                     break;
+                case EEstatusGuia.EN_ESPERA_DEVOLUCION:
+                    baseState = new GuiaEsperaDevolucionState(guia);
+                    break;
+                case EEstatusGuia.DEVUELTO:
+                    baseState = new GuiaDevueltoState(guia);
+                    break;
+                case EEstatusGuia.RECOLECCION_NO_VISITADO:
+                    baseState = new GuiaRecoleccionNoVisitadoState(guia);
+                    break;
+                case EEstatusGuia.RECOLECCION_REPROGRAMADA:
+                    baseState = new GuiaRecoleccionReprogramadaState(guia, fechaReagendado);
+                    break;
+                case EEstatusGuia.INTENTO_RECOLECCION:
+                    baseState = new GuiaIntentoRecoleccionState(guia);
+                    break;
                 default:
                     throw new InvalidOperationException("El estatus especificado no es válido");
             }

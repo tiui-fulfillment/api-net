@@ -56,7 +56,7 @@ namespace Tiui.Entities.State
           return statusList.Where(e =>
             e.EstatusId == (int)EEstatusGuia.PREPARANDO_RUTA ||
             e.EstatusId == (int)EEstatusGuia.PRIMER_INTENTO_ENTREGA ||
-            e.EstatusId == (int)EEstatusGuia.ENTREGAGO || 
+            e.EstatusId == (int)EEstatusGuia.ENTREGAGO ||
             e.EstatusId == (int)EEstatusGuia.NO_VISITADO
           ).ToList();
         case EEstatusGuia.PREPARANDO_RUTA:
@@ -97,7 +97,9 @@ namespace Tiui.Entities.State
         case EEstatusGuia.EN_CAMINO_RECOLECCION:
           return statusList.Where(e =>
             e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION ||
-            e.EstatusId == (int)EEstatusGuia.ENVIO_RECOLECTADO
+            e.EstatusId == (int)EEstatusGuia.ENVIO_RECOLECTADO ||
+            e.EstatusId == (int)EEstatusGuia.INTENTO_RECOLECCION ||
+            e.EstatusId == (int)EEstatusGuia.RECOLECCION_NO_VISITADO
           ).ToList();
         case EEstatusGuia.ENVIO_RECOLECTADO:
           return statusList.Where(e =>
@@ -111,17 +113,46 @@ namespace Tiui.Entities.State
             e.EstatusId == (int)EEstatusGuia.PREPARANDO_RUTA
           ).ToList();
         case EEstatusGuia.ENVIO_PARA_REVISION:
-            return statusList.Where(e =>
-                e.EstatusId == (int)EEstatusGuia.PREPARANDO_RUTA ||
-                e.EstatusId == (int)EEstatusGuia.REAGENDADO ||
-                e.EstatusId == (int)EEstatusGuia.ENTREGAGO ||
-                e.EstatusId == (int)EEstatusGuia.EN_CEDIS_CDMX_RECOLECCION ||
-                e.EstatusId == (int)EEstatusGuia.EN_CEDIS_CDMX ||
-                e.EstatusId == (int)EEstatusGuia.RECIBIDO_EN_CEDIS_CDMX ||
-                e.EstatusId == (int)EEstatusGuia.FULFILLMENT_EN_CEDIS_CDMX ||
-                e.EstatusId == (int)EEstatusGuia.PRODUCTO_AGOTADO
-            ).ToList();
-                default:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.PREPARANDO_RUTA ||
+              e.EstatusId == (int)EEstatusGuia.REAGENDADO ||
+              e.EstatusId == (int)EEstatusGuia.ENTREGAGO ||
+              e.EstatusId == (int)EEstatusGuia.EN_CEDIS_CDMX_RECOLECCION ||
+              e.EstatusId == (int)EEstatusGuia.EN_CEDIS_CDMX ||
+              e.EstatusId == (int)EEstatusGuia.RECIBIDO_EN_CEDIS_CDMX ||
+              e.EstatusId == (int)EEstatusGuia.FULFILLMENT_EN_CEDIS_CDMX ||
+              e.EstatusId == (int)EEstatusGuia.PRODUCTO_AGOTADO ||
+              e.EstatusId == (int)EEstatusGuia.CANCELADO ||
+              e.EstatusId == (int)EEstatusGuia.INTENTO_RECOLECCION ||
+              e.EstatusId == (int)EEstatusGuia.RECOLECCION_NO_VISITADO ||
+              e.EstatusId == (int)EEstatusGuia.RECOLECCION_REPROGRAMADA
+          ).ToList();
+        case EEstatusGuia.EN_ESPERA_DEVOLUCION:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.CANCELADO ||
+              e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
+          ).ToList();
+        case EEstatusGuia.DEVUELTO:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.EN_ESPERA_DEVOLUCION ||
+              e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
+          ).ToList();
+        case EEstatusGuia.RECOLECCION_NO_VISITADO:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.EN_CAMINO_RECOLECCION ||
+              e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
+          ).ToList();
+        case EEstatusGuia.RECOLECCION_REPROGRAMADA:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.EN_CAMINO_RECOLECCION ||
+              e.EstatusId == (int)EEstatusGuia.RECOLECCION_NO_VISITADO ||
+              e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
+          ).ToList();
+        case EEstatusGuia.INTENTO_RECOLECCION:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.RECOLECCION_REPROGRAMADA
+          ).ToList();
+        default:
           return null;
       }
     }

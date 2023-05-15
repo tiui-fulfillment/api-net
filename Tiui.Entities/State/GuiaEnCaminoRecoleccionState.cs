@@ -34,7 +34,10 @@ namespace Tiui.Entities.State
       Guia guia = (Guia)this._context;
       if (
             guia.EstatusId != (int)EEstatusGuia.DOCUMENTADO_RECOLECCION &&
-            guia.EstatusId != (int)EEstatusGuia.ENVIO_PARA_REVISION
+            guia.EstatusId != (int)EEstatusGuia.ENVIO_PARA_REVISION &&
+            guia.EstatusId != (int)EEstatusGuia.RECOLECCION_REPROGRAMADA &&
+            guia.EstatusId != (int)EEstatusGuia.RECOLECCION_NO_VISITADO &&
+            guia.EstatusId != (int)EEstatusGuia.INTENTO_RECOLECCION
             )
         throw new BusinessRuleException("El estatus que desea asignar no es correcto");
       guia.EstatusId = (int)EEstatusGuia.EN_CAMINO_RECOLECCION;
