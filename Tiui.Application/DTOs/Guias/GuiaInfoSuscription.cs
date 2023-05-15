@@ -7,11 +7,11 @@ public class GuiaInfoSuscription
   public string Folio { get; set; }
   public int EstatusId { get; set; }
   public string Estatus { get; set; }
-  public DateTime EstatusFecha { get; set; }
-  public int NovedadId { get; set; }
-  public string NovedadDescripcion { get; set; }
-  public string Comentario { get; set; }
-  public List<Evidencia> Evidencias { get; set; }
+  public DateTime? EstatusFecha { get; set; }
+  public int? NovedadId { get; set; }
+  public string? NovedadDescripcion { get; set; }
+  public string? Comentario { get; set; }
+  public List<Evidencia>? Evidencias { get; set; }
   public Boolean EsPagoContraEntrega { get; set; }
   public decimal ImporteContraEntrega { get; set; }
   public Boolean TieneSeguroMercancia { get; set; }
@@ -51,11 +51,11 @@ public class GuiaInfoSuscriptionDTO
   public string Folio { get; set; }
   public int EstatusId { get; set; }
   public string Estatus { get; set; }
-  public DateTime EstatusFecha { get; set; }
-  public int NovedadId { get; set; }
-  public string NovedadDescripcion { get; set; }
-  public string Comentario { get; set; }
-  public string[] Evidencias { get; set; }
+  public DateTime? EstatusFecha { get; set; }
+  public int? NovedadId { get; set; }
+  public string? NovedadDescripcion { get; set; }
+  public string? Comentario { get; set; }
+  public string[]? Evidencias { get; set; }
   public Boolean EsPagoContraEntrega { get; set; }
   public decimal ImporteContraEntrega { get; set; }
   public Boolean TieneSeguroMercancia { get; set; }
@@ -77,10 +77,10 @@ public class GuiaInfoSuscriptionDTO
   public string ProcesoCancelacion { get; set; }
   public DateTime? FechaReagendado { get; set; }
   public DateTime? FechaConciliacion { get; set; }
-  public Boolean EsDevolucion { get; set; }
+  public Boolean? EsDevolucion { get; set; }
 
-  public string FolioDevolucion { get; set; }
-  public Boolean RequiereVerificacion { get; set; }
+  public string? FolioDevolucion { get; set; }
+  public Boolean? RequiereVerificacion { get; set; }
   public string Remitente { get; set; }
   public string Destinatario { get; set; }
 
@@ -94,7 +94,7 @@ public class Evidencia
   public string id { get; }
   public string text { get; set; }
   public string url { get; set; }
-  public int GuiaId { get; set; }
+  public int? GuiaId { get; set; }
   public string mimeType { get; set; }
 }
 

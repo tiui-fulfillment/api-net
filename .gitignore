@@ -1,4 +1,6 @@
-Tiui.Api/Logs/Log*.txt
+./Tiui.Api\Logs\Log20230514.txt
+./Tiui.Api/Logs/*.txt
+./Tiui.Api/Logs/*
 *.cache
 /*/bin/
 /*/bin/Debug/
@@ -7,3 +9,4 @@ Tiui.Api/Logs/Log*.txt
 /*/obj/Debug/
 /*/obj/Release/
 /*/Logs/
+.fake
