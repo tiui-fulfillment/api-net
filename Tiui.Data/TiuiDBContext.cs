@@ -18,7 +18,8 @@ namespace Tiui.Data
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Municipio> Municipios { get; set; }
-        public DbSet<Direccion> Direcciones { get; set; }                public DbSet<GuiaInfoSuscriptionDTO> guiainfosuscription { get; set; }
+        public DbSet<Direccion> Direcciones { get; set; }                
+        public DbSet<GuiaInfoSuscriptionDTO> guiainfosuscription { get; set; }
 
         #endregion
 
@@ -76,7 +77,7 @@ namespace Tiui.Data
             modelBuilder.Entity<Guia>().HasIndex(x => x.Folio).IsUnique();
             modelBuilder.Entity<Evidencia>().HasIndex(x => x.id).IsUnique();
             modelBuilder.Entity<GuiaInfoSuscriptionDTO>().HasIndex(x => x.GuiaId).IsUnique();
-            modelBuilder.Entity<Direccion>().HasIndex(x => x.DireccionGuiaId).IsUnique();
+            //modelBuilder.Entity<DireccionGuia>().HasIndex(x => x.DireccionGuiaId).IsUnique();
 
             InitConfiguration(modelBuilder);
             InitEstatus(modelBuilder);

@@ -5,7 +5,7 @@ using System.Text;
 using System.Net.WebSockets;
 using System.Text.Json;
 using System.Collections.Concurrent;
-using Tiui.Application.Services.Guias;
+using Tiui.Application.DTOs.Guias;
 using System.Text.Encodings.Web;
 using System;
 using System.Collections.Generic;
@@ -252,8 +252,8 @@ namespace Tiui.Services.WebSockets
                 TieneSeguroMercancia = guiaDto.TieneSeguroMercancia,
                 TipoProcesoCancelacion = guiaDto.TipoProcesoCancelacion,
                 Total = guiaDto.Total,
-                Destinatario = JsonSerializer.Deserialize<Direccion>(guiaDto.Destinatario),
-                Remitente = JsonSerializer.Deserialize<Direccion>(guiaDto.Remitente),
+                Destinatario = JsonSerializer.Deserialize<DireccionesGuia>(guiaDto.Destinatario),
+                Remitente = JsonSerializer.Deserialize<DireccionesGuia>(guiaDto.Remitente),
                 Evidencias = evidencias
           };
               // Lógica para el tipo de mensaje "subscribe"

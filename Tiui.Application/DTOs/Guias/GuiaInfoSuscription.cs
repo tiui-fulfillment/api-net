@@ -33,12 +33,12 @@ public class GuiaInfoSuscription
   public string ProcesoCancelacion { get; set; }
   public DateTime? FechaReagendado { get; set; }
   public DateTime? FechaConciliacion { get; set; }
-  public Boolean EsDevolucion { get; set; }
+  public Boolean? EsDevolucion { get; set; }
 
-  public string FolioDevolucion { get; set; }
-  public Boolean RequiereVerificacion { get; set; }
-  public Direccion Remitente { get; set; }
-  public Direccion Destinatario { get; set; }
+  public string? FolioDevolucion { get; set; }
+  public Boolean? RequiereVerificacion { get; set; }
+  public DireccionesGuia Remitente { get; set; }
+  public DireccionesGuia Destinatario { get; set; }
 
   public int IntentosDeEntrega { get; set; }
   public int IntentosRecoleccion { get; set; }
@@ -98,7 +98,7 @@ public class Evidencia
   public string mimeType { get; set; }
 }
 
-public class Direccion
+public class DireccionesGuia
 {
   [Key]
   public int DireccionGuiaId { get; }
@@ -115,8 +115,4 @@ public class Direccion
   public string Cruzamiento { get; set; }
   public string Numero { get; set; }
   public string Referencias { get; set; }
-  public bool google_error { get; set; }
-  public bool google_validate { get; set; }
-  public double Latitud { get; set; }
-  public double Longitud { get; set; }
 }

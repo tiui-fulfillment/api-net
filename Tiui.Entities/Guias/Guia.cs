@@ -42,9 +42,9 @@ namespace Tiui.Entities.Guias
         public string ProcesoCancelacion { get; set; }
         public DateTime? FechaReagendado { get; set; }
         public DateTime? FechaConciliacion { get; set; }
-        public bool EsDevolucion { get; set; }
-        public bool RequiereVerificacion { get; set; }
-        public string FolioDevolucion { get; set; }
+        public bool? EsDevolucion { get; set; }
+        public bool? RequiereVerificacion { get; set; }
+        public string? FolioDevolucion { get; set; }
 
         /// <summary>
         /// Genera y establece el folio para la guía actual

@@ -28,5 +28,8 @@
         public decimal CobroContraEntrega { get; set; }
         public int CantidadPaquetes { get; set; }
         public string NombreProducto { get; set; }
+        public bool? EsDevolucion { get; set; }
+        public string? FolioDevolucion { get; set; }
+        public bool? RequiereVerificacion { get; set; }
     }
 }

@@ -73,6 +73,7 @@ namespace Tiui.Services.Guias
         await RegistrarBitacora(guia);
         await this._unitOfWork.Commit(firm);
         this.SendMail(guia);
+        //this.GetPrintFolio(guia.GuiaId.ToString()).ConfigureAwait(false);
       }
       catch
       {
@@ -272,7 +273,7 @@ namespace Tiui.Services.Guias
       };
       return guiaTrackingPagedListDTO;
     }
-/*     public async Task<string> GetPrintFolio(string guiaId)
+    public async Task<string> GetPrintFolio(string guiaId)
     {
       try
       {
@@ -292,8 +293,7 @@ namespace Tiui.Services.Guias
                 }
                 isError
             }
-            }
-      ";
+            }";
           string variables = JsonConvert.SerializeObject(new { folios = new List<string> { guiaId } });
 
           var request = new HttpRequestMessage(HttpMethod.Post, "https://33ycsx0t9l.execute-api.us-east-1.amazonaws.com");
@@ -310,13 +310,11 @@ namespace Tiui.Services.Guias
 
           if (filesExistent.Length > 0)
           {
-            var fileBytes = await _httpClient.GetByteArrayAsync(filesExistent[0]);
-            return File(fileBytes, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
+            return filesExistent[0];
           }
           else if (inCreation.Length > 0)
           {
-            var fileBytes = await _httpClient.GetByteArrayAsync(inCreation[0].Url);
-            return File(fileBytes, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
+            return inCreation[0].Url;
           }
           else
           {
@@ -328,6 +326,6 @@ namespace Tiui.Services.Guias
       {
         throw new DataNotFoundException("Algo malo a pasado revise su folio");
       }
-    } */
+    }
   }
 }

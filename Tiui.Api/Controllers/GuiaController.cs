@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Mime;
+using System.Net.WebSockets;
 using System.Text;
 using Tiui.Application.DTOs;
 using Tiui.Application.DTOs.Guias;
@@ -10,6 +11,7 @@ using Tiui.Application.DTOs.Paging;
 using Tiui.Application.DTOs.Reports;
 using Tiui.Application.Reports;
 using Tiui.Application.Services.Guias;
+using Tiui.Application.Services.websocket;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,8 +28,10 @@ namespace Tiui.Api.Controllers
     private readonly IGuiaCompleteReport _guiaCompleteReport;
     private readonly IGuiaMasiveService _guiaMasiveService;
     private readonly HttpClient _httpClient;
+    private readonly IGuiaWebSocketHandler _guiaWebSocketHandler;
+
     public GuiaController(IGuiaService guiaService, IGuiaReport guiaReport, IGuiaStateService guiaStateService, IGuiaCompleteReport guiaCompleteReport
-        , IGuiaMasiveService guiaMasiveService, HttpClient httpClient)
+        , IGuiaMasiveService guiaMasiveService, HttpClient httpClient, IGuiaWebSocketHandler guiaWebSocketHandler)
     {
       this._guiaService = guiaService;
       this._guiaReport = guiaReport;
@@ -35,6 +39,8 @@ namespace Tiui.Api.Controllers
       this._guiaCompleteReport = guiaCompleteReport;
       this._guiaMasiveService = guiaMasiveService;
       this._httpClient = httpClient;
+      this._guiaWebSocketHandler = guiaWebSocketHandler;
+
     }
     // POST api/<GuiaController>        
     [HttpPost]
@@ -46,50 +52,16 @@ namespace Tiui.Api.Controllers
     [HttpGet, Route("GuiaReport/{guiaId}")]
     public async Task<ActionResult> GetGuiaReport(string guiaId)
     {
-      string query = @"
-        query GetPrintGuia($folios: [String]!) {
-          getPrintGuia(folios: $folios) {
-            error
-            filesExistent
-            inCreation {
-              base64Data
-              error
-              folio
-              isError
-              message
-              url
-            }
-            isError
-          }
-        }
-      ";
-      string variables = JsonConvert.SerializeObject(new { folios = new List<string> { guiaId } });
-
-      var request = new HttpRequestMessage(HttpMethod.Post, "https://33ycsx0t9l.execute-api.us-east-1.amazonaws.com");
-      //request.Headers.Add("Authorization", "Bearer token-de-autenticación");
-      var requestBody = new { query, variables = new { folios = new string[] { guiaId } } };
-      request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
-      var response = await _httpClient.SendAsync(request);
-      response.EnsureSuccessStatusCode();
-      var responseContent = await response.Content.ReadAsStringAsync();
-      var guiaReportResponse = JsonConvert.DeserializeObject<PrintGuiaDTO>(responseContent);
-
-      string[] filesExistent = guiaReportResponse.Data.PrintGuia.FilesExistent;
-      InCreation[] inCreation = guiaReportResponse.Data.PrintGuia.InCreation;
-
-      if (filesExistent.Length > 0)
+      try
       {
-        var fileBytes = await _httpClient.GetByteArrayAsync(filesExistent[0]);
+        var folioPdf = await this._guiaService.GetPrintFolio(guiaId);
+        var fileBytes = await _httpClient.GetByteArrayAsync(folioPdf);
         return File(fileBytes, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
       }
-      else if (inCreation.Length > 0)
+      catch (Exception ex)
       {
-        var fileBytes = await _httpClient.GetByteArrayAsync(inCreation[0].Url);
-        return File(fileBytes, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
+        return  NotFound(ex.Message);
       }
-
-      return File(inCreation[0].Url, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
-
     }
 
     [AllowAnonymous]
@@ -97,6 +69,51 @@ namespace Tiui.Api.Controllers
     public async Task<ActionResult<GuiaDetailDTO>> GetGuia(string guaId)
     {
       return await this._guiaService.GetGuia(guaId);
+    }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpGet("ws")]
+    public async Task GetGuiaWS()
+    {
+      if (HttpContext.WebSockets.IsWebSocketRequest)
+      {
+        var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+        var webSocketConnectionManager = new WebSocketConnectionManager();
+        var connectionId = webSocketConnectionManager.AddSocket(webSocket);
+        await this._guiaWebSocketHandler.OnConnectedAsync(new WebSocketConnection(connectionId, webSocket)).ContinueWith(async (task) =>
+        {
+          await this._guiaWebSocketHandler.StartAsync(CancellationToken.None
+          );
+        });
+
+        Console.WriteLine($"WebSocket Connection Opened: {connectionId}");
+        Console.WriteLine($"Count 🥶 {webSocketConnectionManager.GetAllSockets().Count}");
+        WebSocketReceiveResult result;
+        try
+        {
+          var buffer = new byte[1024 * 4];
+          result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+          while (webSocket.State == WebSocketState.Open && !result.CloseStatus.HasValue)
+          {
+            if (result.MessageType == WebSocketMessageType.Text)
+            {
+              var message = Encoding.ASCII.GetString(buffer, 0, result.Count);
+              Console.WriteLine($"Received message from client: {message}");
+              // Aquí puedes hacer algo con el mensaje recibido
+              await this._guiaWebSocketHandler.HandleMessageAsync(webSocket, message);
+
+            }
+            result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+          }
+        }
+        catch (Exception ex)
+        {
+          Console.WriteLine($"WebSocket Error: {ex.Message}");
+        }
+      }
+      else
+      {
+        HttpContext.Response.StatusCode = 400;
+      }
     }
     [HttpPost("guias-traking")]
     public async Task<GuiaTrackingPagedListDTO> GetGuiasTracking(GuiaFilterDTO guiaFilterDTO)

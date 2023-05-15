@@ -832,6 +832,13 @@ namespace Tiui.Data.Migrations
             b.Property<decimal>("Total")
                       .HasColumnType("numeric");
 
+            b.Property<decimal>("EsDevolucion")
+                      .HasColumnType("boolean");
+            b.Property<string>("FolioDevolucion")
+                      .HasColumnType("text");
+            b.Property<string>("RequiereVerificacion")
+                      .HasColumnType("boolean");
+
             b.HasKey("GuiaId");
 
             b.HasIndex("EstatusId");
