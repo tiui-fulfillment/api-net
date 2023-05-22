@@ -112,6 +112,7 @@ namespace Tiui.Entities.State
             e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION ||
             e.EstatusId == (int)EEstatusGuia.PREPARANDO_RUTA
           ).ToList();
+          //TODO: se debe reiniciar desde un reagendado. como siguiente estado.
         case EEstatusGuia.ENVIO_PARA_REVISION:
           return statusList.Where(e =>
               e.EstatusId == (int)EEstatusGuia.PREPARANDO_RUTA ||
@@ -129,28 +130,27 @@ namespace Tiui.Entities.State
           ).ToList();
         case EEstatusGuia.EN_ESPERA_DEVOLUCION:
           return statusList.Where(e =>
-              e.EstatusId == (int)EEstatusGuia.CANCELADO ||
-              e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
-          ).ToList();
-        case EEstatusGuia.DEVUELTO:
-          return statusList.Where(e =>
-              e.EstatusId == (int)EEstatusGuia.EN_ESPERA_DEVOLUCION ||
+              e.EstatusId == (int)EEstatusGuia.DEVUELTO ||
               e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
           ).ToList();
         case EEstatusGuia.RECOLECCION_NO_VISITADO:
           return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.RECOLECCION_REPROGRAMADA ||
               e.EstatusId == (int)EEstatusGuia.EN_CAMINO_RECOLECCION ||
               e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
           ).ToList();
         case EEstatusGuia.RECOLECCION_REPROGRAMADA:
           return statusList.Where(e =>
               e.EstatusId == (int)EEstatusGuia.EN_CAMINO_RECOLECCION ||
-              e.EstatusId == (int)EEstatusGuia.RECOLECCION_NO_VISITADO ||
               e.EstatusId == (int)EEstatusGuia.ENVIO_PARA_REVISION
           ).ToList();
         case EEstatusGuia.INTENTO_RECOLECCION:
           return statusList.Where(e =>
               e.EstatusId == (int)EEstatusGuia.RECOLECCION_REPROGRAMADA
+          ).ToList();
+        case EEstatusGuia.CANCELADO:
+          return statusList.Where(e =>
+              e.EstatusId == (int)EEstatusGuia.EN_ESPERA_DEVOLUCION
           ).ToList();
         default:
           return null;

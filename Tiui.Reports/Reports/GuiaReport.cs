@@ -54,9 +54,9 @@ namespace Tiui.Reports.Reports
             guiaRow.CiudadDestino = guia.Destinatario.Estado;
             guiaRow.ComisionContraEntrega = guia.ImporteContraEntrega;
 
-      guiaRow.CodigoQR = guia.Folio;
+            guiaRow.CodigoQR = guia.Folio;
 
-      this._template.AddGuiaTemplateRow(guiaRow);
+            this._template.AddGuiaTemplateRow(guiaRow);
         }
         /// <summary>
         /// Obtiene el reporte de guia en formato PDF
