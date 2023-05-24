@@ -50,9 +50,9 @@ namespace Tiui.Api.Controllers
     }
     [AllowAnonymous]
     [HttpGet, Route("GuiaReport/{guiaId}")]
-    public async Task<ActionResult> GetGuiaReport(string guiaId)
+    public async Task<ActionResult> GetGuiaReport(long guiaId)
     {
-      try
+/*       try
       {
         var folioPdf = await this._guiaService.GetPrintFolio(guiaId);
         var fileBytes = await _httpClient.GetByteArrayAsync(folioPdf);
@@ -61,7 +61,11 @@ namespace Tiui.Api.Controllers
       catch (Exception ex)
       {
         return  NotFound(ex.Message);
-      }
+      } */
+           {
+            await this._guiaReport.SetData(guiaId);
+            return this.File(this._guiaReport.ToPdf(), MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
+        }
     }
 
     [AllowAnonymous]

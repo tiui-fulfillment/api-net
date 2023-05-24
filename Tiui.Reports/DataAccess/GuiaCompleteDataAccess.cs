@@ -58,7 +58,7 @@ namespace Tiui.Reports.DataAccess
         {
             StringBuilder sbWhere = new StringBuilder();
             if (filterDTO.FechaRegistroInicio.HasValue && filterDTO.FechaRegistroFin.HasValue)
-            {                
+            {
                 sbWhere.AppendLine("And g.\"FechaRegistro\" between @fechaInicial And @fechaFinal");
                 command.Parameters.AddWithValue("@fechaInicial", filterDTO.FechaRegistroInicio.Value.Date);
                 command.Parameters.AddWithValue("@fechaFinal", filterDTO.FechaRegistroFin.Value.Date.AddHours(23).AddMinutes(59));

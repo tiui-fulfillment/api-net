@@ -36,9 +36,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<TiuiDBContext>(options =>
-             options.UseNpgsql("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;"));
+             options.UseNpgsql("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB;Username=postgres;Password=Asdf1234$;"));
 builder.Services.AddScoped<NpgsqlConnection>(options =>
-new NpgsqlConnection("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;"));
+new NpgsqlConnection("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB;Username=postgres;Password=Asdf1234$;"));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddDependency();
 builder.Services.AddAutoMapper(typeof(AutoMapping));
