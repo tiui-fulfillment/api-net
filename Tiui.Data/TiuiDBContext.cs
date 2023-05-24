@@ -65,7 +65,7 @@ namespace Tiui.Data
       if (!optionsBuilder.IsConfigured)
       {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-        optionsBuilder.UseNpgsql("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB;Username=postgres;Password=Asdf1234$;");
+        optionsBuilder.UseNpgsql("Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;");
       }
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)

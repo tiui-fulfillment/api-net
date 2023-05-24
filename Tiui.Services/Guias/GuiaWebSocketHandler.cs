@@ -32,7 +32,7 @@ namespace Tiui.Services.WebSockets
       this._guiaInfoSuscriptionRepository = guiaInfoSuscriptionRepositoryRepository;
       this._connection = connection;
       this._subscriptions = new List<GuiaSubscription>();
-      this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB;Username=postgres;Password=Asdf1234$;";
+      this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;";
             this._optionsJSON = new JsonSerializerOptions
       {
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,      };
