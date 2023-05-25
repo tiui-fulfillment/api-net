@@ -94,7 +94,7 @@ var guiaNotificationClientes = serviceProvider.GetRequiredService<GuiaNotificati
 // Obtén el token de cancelación del proveedor de la aplicación
 var cancellationToken = app.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-await guiaNotificationClientes.StartAsync(cancellationToken);
+guiaNotificationClientes.StartAsync(cancellationToken);
 
 // Configure the HTTP request pipeline.
 /* if (app.Environment.IsDevelopment())
