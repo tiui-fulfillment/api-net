@@ -34,6 +34,7 @@ using Tiui.Application.File;
 using Tiui.Files;
 using Tiui.Application.Services.websocket;
 using Tiui.Data.Repository.GuiaInfoSuscription;
+using Tiui.Services.GuiaNotificationClientes;
 
 namespace Tiui.Api.Helpers
 {
@@ -78,6 +79,7 @@ namespace Tiui.Api.Helpers
             services.AddScoped<IUsuarioAdminService, UsuarioAdminService>();
             services.AddScoped<IGuiaMasiveService, GuiaMasiveService>();
             services.AddScoped<IGuiaWebSocketHandler, GuiaWebSocketHandler>();
+            services.AddScoped<IGuiaNotificationClientes, GuiaNotificationClientes>();
             #endregion
             #region Reports
             services.AddScoped<IGuiaReport, GuiaReport>();
