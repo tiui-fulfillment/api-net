@@ -13,6 +13,6 @@ namespace Tiui.Application.Services.Guias
         public Task<GuiaDetailDTO> GetGuia(string guiaId);
         public Task<GuiaTrackingPagedListDTO> GetWithFilterAndPaging(GuiaFilterDTO filtroDTO);
         public Task<GuiaTrackingPagedListDTO> GetWithFilterAndPagingTiuiAmigo(GuiaFilterDTO filtroDTO);
-        public Task<string> GetPrintFolio(string guiaId);
+        public Task<byte[]> GetPrintFolio(string guiaId);
     }
 }

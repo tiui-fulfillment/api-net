@@ -273,7 +273,7 @@ namespace Tiui.Services.Guias
       };
       return guiaTrackingPagedListDTO;
     }
-    public async Task<string> GetPrintFolio(string guiaId)
+    public async Task<byte[]> GetPrintFolio(string guiaId)
     {
       try
       {
@@ -310,11 +310,16 @@ namespace Tiui.Services.Guias
 
           if (filesExistent.Length > 0)
           {
-            return filesExistent[0];
+            // Si hay una URL disponible, descarga los datos del archivo
+            var fileBytes = await _httpClient.GetByteArrayAsync(filesExistent[0]);
+            return fileBytes;
           }
           else if (inCreation.Length > 0)
           {
-            return inCreation[0].Url;
+            // Si hay datos en base64 disponibles, decodifica los datos
+            var base64Data = inCreation[0].Base64Data;
+            var fileBytes = Convert.FromBase64String(base64Data);
+            return fileBytes;
           }
           else
           {

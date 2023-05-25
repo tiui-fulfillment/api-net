@@ -50,22 +50,21 @@ namespace Tiui.Api.Controllers
     }
     [AllowAnonymous]
     [HttpGet, Route("GuiaReport/{guiaId}")]
-    public async Task<ActionResult> GetGuiaReport(long guiaId)
+    public async Task<ActionResult> GetGuiaReport(string guiaId)
     {
-/*       try
+       try
       {
-        var folioPdf = await this._guiaService.GetPrintFolio(guiaId);
-        var fileBytes = await _httpClient.GetByteArrayAsync(folioPdf);
+        var fileBytes = await this._guiaService.GetPrintFolio(guiaId);
         return File(fileBytes, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
       }
       catch (Exception ex)
       {
         return  NotFound(ex.Message);
-      } */
-           {
+      }
+           /* {
             await this._guiaReport.SetData(guiaId);
             return this.File(this._guiaReport.ToPdf(), MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
-        }
+        } */
     }
 
     [AllowAnonymous]
@@ -89,8 +88,6 @@ namespace Tiui.Api.Controllers
           );
         });
 
-        Console.WriteLine($"WebSocket Connection Opened: {connectionId}");
-        Console.WriteLine($"Count 🥶 {webSocketConnectionManager.GetAllSockets().Count}");
         WebSocketReceiveResult result;
         try
         {
