@@ -32,7 +32,7 @@ namespace Tiui.Services.GuiaNotificationClientes
       this._httpClient = httpClient;
       this._connection = connection;
       this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB-dev;Username=postgres;Password=Asdf1234$;";
-      this._urlDropi = "https://test-api.dropi.co/external/pushNotifStatusTiui";
+      this._urlDropi = "https://test-api-mx.dropi.co/external/pushNotifStatusTiui";
       this._keyDropi = "dXNlcjp0aXVpLGJ5Omtldmlu";
       this._optionsJSON = new JsonSerializerOptions
       {
@@ -77,19 +77,19 @@ namespace Tiui.Services.GuiaNotificationClientes
         {
           var guiaData = JsonSerializer.Deserialize<GuiaInfoSuscription>(args.Payload);
           var resMessage = new SubscriptionMessageGuiaInfo();
+          guiaData.EstatusFecha = DateTime.Now;
           resMessage.Type = "update";
           // Asignar la cadena JSON a la propiedad Payload del objeto resMessage
-          resMessage.Payload = guiaData;
           if (resMessage.Payload.TiuiAmigoId == 59 && resMessage.Type == "update")
           {
             try
             {
+              resMessage.Payload.EstatusFecha = DateTime.Now;
               var request = new HttpRequestMessage(HttpMethod.Post, this._urlDropi);
               request.Headers.Add("tokenunicotiui", this._keyDropi);
               request.Content = new StringContent(JsonSerializer.Serialize(guiaData, _optionsJSON), Encoding.UTF8, "application/json");
               var response = await _httpClient.SendAsync(request);
               var responseContent = await response.Content.ReadAsStringAsync();
-              Console.WriteLine(responseContent + " 😱");
               response.EnsureSuccessStatusCode();
 
             }
