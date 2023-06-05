@@ -37,6 +37,11 @@ namespace Tiui.Services.Guias
       this._emailStatusFactoryHelper = emailStatusFactoryHelper;
       this._logger = logger;
     }
+
+    public GuiaStateService()
+    {
+    }
+
     public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetState(GuiaUpdateStateDTO guiaStateDTO)
     {
       var guia = await this.GetGuia(guiaStateDTO.GuiaId);

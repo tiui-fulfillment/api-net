@@ -21,6 +21,7 @@ using System.Net.Mime;
 using Newtonsoft.Json;
 using System.Text;
 using System.IO;
+using Tiui.Application.Repository.Seguridad;
 
 namespace Tiui.Services.Guias
 {
@@ -29,6 +30,7 @@ namespace Tiui.Services.Guias
   /// </summary>
   public class GuiaService : IGuiaService
   {
+    private readonly IUsarioRepository _usuarioRepository;
     private readonly IGuiaRepository _guiaRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -39,9 +41,21 @@ namespace Tiui.Services.Guias
     private readonly IBitacoraGuiaRepository _bitacoraGuiaRepository;
     private readonly HttpClient _httpClient;
 
-    public GuiaService(IGuiaRepository guiaRepository, IUnitOfWork unitOfWork, IMapper mapper, IRegistroGuiaEmail registroGuiaEmail
-    , HttpClient httpClient, IConfiguration configuration, ILogger<GuiaService> logger, IPaqueteriaRepository paqueteriaRepository, IBitacoraGuiaRepository bitacoraGuiaRepository)
+
+    public GuiaService(
+      IGuiaRepository guiaRepository, 
+      IUnitOfWork unitOfWork, 
+      IMapper mapper, 
+      IRegistroGuiaEmail registroGuiaEmail, 
+      HttpClient httpClient, 
+      IConfiguration configuration, 
+      ILogger<GuiaService> logger, 
+      IPaqueteriaRepository paqueteriaRepository, 
+      IBitacoraGuiaRepository bitacoraGuiaRepository, 
+      IUsarioRepository usuarioRepository
+      )
     {
+      this._usuarioRepository = usuarioRepository;
       this._guiaRepository = guiaRepository;
       this._unitOfWork = unitOfWork;
       this._mapper = mapper;
@@ -330,6 +344,43 @@ namespace Tiui.Services.Guias
       catch (System.Exception)
       {
         throw new DataNotFoundException("Algo malo a pasado revise su folio");
+      }
+    }
+    public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO)
+    {
+      try
+      {
+        //TODO filtro por tiuiamigo del usuario.
+        var guia =
+        await GetGuia(guiaUpdateCancelationDTO.Folio.ToString());
+        if (guia == null)
+        {
+          return new ApiResultModel<GuiaUpdateStateDTO>
+          {
+            Message = "No se encontró la guía",
+            Success = false,
+          };
+        }
+        if (guia.EstatusId == 12)
+        {
+          return new ApiResultModel<GuiaUpdateStateDTO>
+          {
+            Message = "La guía ya se encuentra cancelada",
+            Success = false,
+          };
+        }
+        var guiaUpdateStateDTO = new GuiaUpdateStateDTO
+        {
+          MotivoCancelacionId = guiaUpdateCancelationDTO.MotivoCancelacionId,
+          GuiaId = guia.GuiaId,
+          NuevoEstatus = EEstatusGuia.CANCELADO,
+        };
+        var guiaStateService = new GuiaStateService();
+        return await guiaStateService.SetState(guiaUpdateStateDTO);
+      }
+      catch (System.Exception)
+      {
+        throw new System.Exception("Ocurrió un error al cancelar la guía");
       }
     }
   }
