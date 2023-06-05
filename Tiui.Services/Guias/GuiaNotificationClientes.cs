@@ -77,6 +77,7 @@ namespace Tiui.Services.GuiaNotificationClientes
         {
           var guiaData = JsonSerializer.Deserialize<GuiaInfoSuscription>(args.Payload);
           var resMessage = new SubscriptionMessageGuiaInfo();
+          guiaData.EstatusFecha = DateTime.Now;
           resMessage.Type = "update";
           resMessage.Payload = guiaData;
           // Asignar la cadena JSON a la propiedad Payload del objeto resMessage
