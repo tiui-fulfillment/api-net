@@ -1,5 +1,6 @@
 using Tiui.Application.Repository.Guias;
 using Tiui.Application.Services.websocket;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System.Text;
 using System.Net.WebSockets;
@@ -26,13 +27,15 @@ namespace Tiui.Services.WebSockets
     private readonly JsonSerializerOptions _optionsJSON;
     private readonly ConcurrentDictionary<string, WebSocket> _sockets = new ConcurrentDictionary<string, WebSocket>();
     private readonly List<GuiaSubscription> _subscriptions;
-
-    public GuiaWebSocketHandler(NpgsqlConnection connection, IGuiaInfoSuscriptionRepository guiaInfoSuscriptionRepositoryRepository)
+    private readonly IConfiguration _configuration;
+    public GuiaWebSocketHandler(NpgsqlConnection connection, IGuiaInfoSuscriptionRepository guiaInfoSuscriptionRepositoryRepository, IConfiguration configuration)
     {
+      this._configuration = configuration;
       this._guiaInfoSuscriptionRepository = guiaInfoSuscriptionRepositoryRepository;
       this._connection = connection;
       this._subscriptions = new List<GuiaSubscription>();
-      this._conectionValue = "Host=tiui-prod.cluster-cp0tdihlsymi.us-east-1.rds.amazonaws.com;Database=TiuiDB;Username=postgres;Password=Asdf1234$;";
+      Console.WriteLine($"Connection  ▶{connection.State}▶ 🟥🟥🟥🟥" + this._configuration["ConnectionTiuiDB"]);
+      this._conectionValue = this._configuration["ConnectionTiuiDB"];
             this._optionsJSON = new JsonSerializerOptions
       {
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,      };

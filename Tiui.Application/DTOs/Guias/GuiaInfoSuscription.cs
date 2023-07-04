@@ -42,6 +42,7 @@ public class GuiaInfoSuscription
 
   public int IntentosDeEntrega { get; set; }
   public int IntentosRecoleccion { get; set; }
+  public int TiuiAmigoId { get; set; }
 }
 
 public class GuiaInfoSuscriptionDTO

@@ -50,22 +50,17 @@ namespace Tiui.Api.Controllers
     }
     [AllowAnonymous]
     [HttpGet, Route("GuiaReport/{guiaId}")]
-    public async Task<ActionResult> GetGuiaReport(long guiaId)
+    public async Task<ActionResult> GetGuiaReport(string guiaId)
     {
-/*       try
+      try
       {
-        var folioPdf = await this._guiaService.GetPrintFolio(guiaId);
-        var fileBytes = await _httpClient.GetByteArrayAsync(folioPdf);
+        var fileBytes = await this._guiaService.GetPrintFolio(guiaId);
         return File(fileBytes, MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
       }
       catch (Exception ex)
       {
-        return  NotFound(ex.Message);
-      } */
-           {
-            await this._guiaReport.SetData(guiaId);
-            return this.File(this._guiaReport.ToPdf(), MediaTypeNames.Application.Pdf, $"guia_{guiaId}.pdf");
-        }
+        return NotFound(ex.Message);
+      }
     }
 
     [AllowAnonymous]
@@ -74,7 +69,7 @@ namespace Tiui.Api.Controllers
     {
       return await this._guiaService.GetGuia(guaId);
     }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpGet("ws")]
     public async Task GetGuiaWS()
     {
@@ -89,8 +84,6 @@ namespace Tiui.Api.Controllers
           );
         });
 
-        Console.WriteLine($"WebSocket Connection Opened: {connectionId}");
-        Console.WriteLine($"Count 🥶 {webSocketConnectionManager.GetAllSockets().Count}");
         WebSocketReceiveResult result;
         try
         {
@@ -134,13 +127,11 @@ namespace Tiui.Api.Controllers
     {
       return this.File(await this._guiaMasiveService.CreateZip(guiaMasiveDTO), MediaTypeNames.Application.Zip, $"guias.zip");
     }
-    [Authorize(Roles = "ADMIN")]
     [HttpPut]
     public async Task<ApiResultModel<GuiaUpdateStateDTO>> Put(GuiaUpdateStateDTO guiaUpdateStateDTO)
     {
       return await this._guiaStateService.SetState(guiaUpdateStateDTO);
     }
-    [Authorize(Roles = "ADMIN")]
     [HttpPut("change-state-masive")]
     public async Task<ApiResultModel<GuiaUpdateStateDTO>> PutMavise(GuiaStateChangeMasiveDTO guiaUpdateStateDTO)
     {
@@ -152,12 +143,17 @@ namespace Tiui.Api.Controllers
     {
       return await this._guiaService.GetWithFilterAndPaging(guiaFilterDTO);
     }
-    [Authorize(Roles = "ADMIN")]
     [HttpPost, Route("GuiaCompleteReport")]
     public ActionResult GetGuiaCompleteReport(GuiaReportFilterDTO guiaReportFilterDTO)
     {
       this._guiaCompleteReport.SetData(guiaReportFilterDTO);
       return this.File(this._guiaCompleteReport.ToExcel(), MediaTypeNames.Application.Rtf, $"guias.xlsx");
+    }
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpPost, Route("cancelation")]
+    public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO)
+    {
+      return await this._guiaService.SetGuiaCancelationAsync(guiaUpdateCancelationDTO);
     }
   }
 }
