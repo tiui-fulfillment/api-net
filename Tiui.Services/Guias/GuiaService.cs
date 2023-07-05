@@ -43,15 +43,15 @@ namespace Tiui.Services.Guias
 
 
     public GuiaService(
-      IGuiaRepository guiaRepository, 
-      IUnitOfWork unitOfWork, 
-      IMapper mapper, 
-      IRegistroGuiaEmail registroGuiaEmail, 
-      HttpClient httpClient, 
-      IConfiguration configuration, 
-      ILogger<GuiaService> logger, 
-      IPaqueteriaRepository paqueteriaRepository, 
-      IBitacoraGuiaRepository bitacoraGuiaRepository, 
+      IGuiaRepository guiaRepository,
+      IUnitOfWork unitOfWork,
+      IMapper mapper,
+      IRegistroGuiaEmail registroGuiaEmail,
+      HttpClient httpClient,
+      IConfiguration configuration,
+      ILogger<GuiaService> logger,
+      IPaqueteriaRepository paqueteriaRepository,
+      IBitacoraGuiaRepository bitacoraGuiaRepository,
       IUsarioRepository usuarioRepository
       )
     {
@@ -65,7 +65,6 @@ namespace Tiui.Services.Guias
       this._paqueteriaRepository = paqueteriaRepository;
       this._bitacoraGuiaRepository = bitacoraGuiaRepository;
       this._httpClient = httpClient;
-
     }
     /// <summary>
     /// Crear el registro de la guia con todas sus relaciones
@@ -310,7 +309,7 @@ namespace Tiui.Services.Guias
             }";
           string variables = JsonConvert.SerializeObject(new { folios = new List<string> { guiaId } });
 
-          var request = new HttpRequestMessage(HttpMethod.Post, "https://77e9uha1bj.execute-api.us-east-1.amazonaws.com");
+          var request = new HttpRequestMessage(HttpMethod.Post, this._configuration["URL_GQL"]);
           //request.Headers.Add("Authorization", "Bearer token-de-autenticación");
           var requestBody = new { query, variables = new { folios = new string[] { guiaId } } };
           request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");

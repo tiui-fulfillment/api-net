@@ -8,5 +8,9 @@
         IEstatusRutaEntregaEmail Destinatario(string destinatario);
         IEstatusRutaEntregaEmail TiuAmigo(string tiuiAmigo);
         IEstatusRutaEntregaEmail NumeroGuia(string NumeroGuia);
+        IEstatusRutaEntregaEmail Estatus();
+        IEstatusRutaEntregaEmail UrlWebSite(string url);
+        IEstatusRutaEntregaEmail TextBody();
+        IEstatusRutaEntregaEmail ImagenEstatus();
     }
 }

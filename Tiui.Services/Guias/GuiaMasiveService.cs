@@ -54,7 +54,6 @@ namespace Tiui.Services.Guias
       this._fileService = fileService;
       this._guiaReport = guiaReport;
       this._httpClient = httpClient;
-
     }
     public async Task<ApiResultModel<List<GuiaCreateDTO>>> Create(GuiaMasiveDTO guiaMasiveDTO)
     {
@@ -211,8 +210,8 @@ namespace Tiui.Services.Guias
             }
             }";
           string variables = JsonConvert.SerializeObject(new { folios = new List<string> { guiaId } });
-
-          var request = new HttpRequestMessage(HttpMethod.Post, "https://77e9uha1bj.execute-api.us-east-1.amazonaws.com");
+          Console.WriteLine("🐽" + this._configuration["URL_GQL"]);
+          var request = new HttpRequestMessage(HttpMethod.Post, this._configuration["URL_GQL"]);
           //request.Headers.Add("Authorization", "Bearer token-de-autenticación");
           var requestBody = new { query, variables = new { folios = new string[] { guiaId } } };
           request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");

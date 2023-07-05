@@ -41,6 +41,9 @@
     <None Update="Email\EstatusEntregadoTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Email\EstatusGeneralTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Email\EstatusEnRutaEntregaTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -97,7 +97,10 @@ namespace Tiui.Api.Helpers
             services.AddScoped<IEstatusCaminoCDMXEmail, EstatusCaminoCDMXEmail>();
             services.AddScoped<IEstatusEnCedisCDMXEmail, EstatusEnCedisCDMXEmail>();
             services.AddScoped<IEstatusRutaEntregaEmail, EstatusRutaEntregaEmail>();
+            services.AddScoped<IEstatusPreparandoRutaEmail, EstatusPreparandoRutaEmail>();
+            services.AddScoped<IEstatusIntentoDeEntregaEmail, EstatusIntentoDeEntregaEmail>();
             services.AddScoped<IEstatusReagendadoEmail, EstatusReagendadoEmail>();
+            services.AddScoped<IEstatusNoVisitadoEmail, EstatusNoVisitadoEmail>();
             services.AddScoped<IEstatusEntregadoEmail, EstatusEntregadoEmail>();
             services.AddScoped<IEmailStatusFactoryHelper, EmailStatusFactoryHelper>();
             services.AddScoped<IRecuperarContraseñaEmail, RecuperarContraseñaEmail>();
