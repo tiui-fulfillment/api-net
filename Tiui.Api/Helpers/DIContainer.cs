@@ -71,6 +71,7 @@ namespace Tiui.Api.Helpers
             services.AddScoped<IDireccionService, DireccionService>();
             services.AddScoped<IConfiguracionCajaTiuiAmigoService, ConfiguracionCajaTiuiAmigoService>();
             services.AddScoped<IConfiguracionAppService, ConfiguracionAppService>();
+            services.AddScoped<IGraphqlService, GraphqlService>();
             services.AddScoped<INotificacionClienteService, NotificacionClienteService>();
             services.AddScoped<IGuiaStateService, GuiaStateService>();
             services.AddScoped<ITiuiAmigoService, TiuiAmigoService>();
