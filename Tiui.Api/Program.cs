@@ -17,7 +17,13 @@ using Tiui.Security;
 using Tiui.Services.GuiaNotificationClientes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
+var configBuilder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+var configuration = configBuilder.Build();
+Console.WriteLine("▶▶▶▶▶▶ OnConfiguring  ▶， " + configuration["ConnectionTiuiDB"]);
 var builder = WebApplication.CreateBuilder(args);
 
 #region Log
@@ -42,22 +48,31 @@ builder.Services.AddControllers(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-Console.WriteLine("OnConfiguring 🏀🍑💙, " + builder.Configuration["ConnectionTiuiDB"]);
+Console.WriteLine("OnConfiguring 🏀🍑💙, " + configuration["ConnectionTiuiDB"]);
 
 builder.Services.AddDbContext<TiuiDBContext>(options =>
-             options.UseNpgsql(builder.Configuration["ConnectionTiuiDB"]));
+             options.UseNpgsql(configuration["ConnectionTiuiDB"]));
 builder.Services.AddSingleton<NpgsqlConnection>(options =>
-new NpgsqlConnection(builder.Configuration["ConnectionTiuiDB"]));
+new NpgsqlConnection(configuration["ConnectionTiuiDB"]));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddDependency();
 builder.Services.AddAutoMapper(typeof(AutoMapping));
-builder.Services.AddSingleton(builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>());
+var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
+var jwtSettingsJson = JsonConvert.SerializeObject(jwtSettings, Formatting.Indented);
+Console.WriteLine("▶▶▶▶▶▶ JwtSettings  ▶， " + jwtSettingsJson);
+
+Console.WriteLine("▶▶▶▶▶▶ JwtSettings  ▶， " + configuration.GetSection("JwtSettings").Get<JwtSettings>());
+builder.Services.AddSingleton(jwtSettings);
 builder.Services.AddSingleton<WebSocketConnectionManager>();
 builder.Services.AddSingleton<GuiaNotificationClientes>();
 
 #endregion
 
 #region JWT Authentication
+
+Console.WriteLine("▶▶▶▶▶▶ JwtSettings:issuer  ▶， " + configuration["JwtSettings:issuer"]);
+Console.WriteLine("▶▶▶▶▶▶ JwtSettings:audience  ▶， " + configuration["JwtSettings:audience"]);
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     options.TokenValidationParameters = new TokenValidationParameters
@@ -66,9 +81,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidateIssuer = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-        ValidAudience = builder.Configuration["JwtSettings:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["KEY_JWT_TIUI"])),
+        ValidIssuer = configuration["JwtSettings:issuer"],
+        ValidAudience = configuration["JwtSettings:audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["KEY_JWT_TIUI"])),
         ClockSkew = TimeSpan.Zero
     });
 #endregion

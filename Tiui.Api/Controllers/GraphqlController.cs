@@ -7,7 +7,6 @@ using Tiui.Application.Services.Comun;
 
 namespace Tiui.Api.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("gql")]
     [ApiController]
     public class GraphqlController : ControllerBase
@@ -23,7 +22,8 @@ namespace Tiui.Api.Controllers
         {
             var response = await this._graphqlService.SendGraphQlRequestAsync(request.Query, request.Variables.ToString());
             Console.WriteLine(response);
-            return Content(response.ToString(), "application/json"); return Ok();
+            Ok();
+            return Content(response.ToString(), "application/json");
         }
 
     }

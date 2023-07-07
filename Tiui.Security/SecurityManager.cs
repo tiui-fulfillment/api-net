@@ -51,7 +51,7 @@ namespace Tiui.Security
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["KEY_JWT_TIUI"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(
+        var token = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
