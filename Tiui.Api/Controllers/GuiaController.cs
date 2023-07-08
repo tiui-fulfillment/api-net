@@ -114,6 +114,7 @@ namespace Tiui.Api.Controllers
         HttpContext.Response.StatusCode = 400;
       }
     }
+    [AllowAnonymous]
     [HttpPost("guias-traking")]
     public async Task<GuiaTrackingPagedListDTO> GetGuiasTracking(GuiaFilterDTO guiaFilterDTO)
     {

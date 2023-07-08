@@ -19,6 +19,7 @@ using System.Threading;
 using System.Linq;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Text;
 
 namespace Tiui.Services.Guias
@@ -113,11 +114,11 @@ namespace Tiui.Services.Guias
         await _unitOfWork.BeginTransaction(firm);
         await this._guiaRepository.Create(guia);
         await RegistrarBitacora(guia);
-        await this._unitOfWork.Commit(firm);
-        this.SendMail(guia);
         guiaCreateDTO.GuiaId = guia.GuiaId;
         guiaCreateDTO.Folio = guia.Folio;
-        this.GeneratePDFAsync(guia.Folio).ConfigureAwait(false);
+        this.GeneratePDFAsync(guia.Folio);
+        // this.SendMail(guia);
+        await this._unitOfWork.Commit(firm);
         return true;
       }
       catch
@@ -173,7 +174,7 @@ namespace Tiui.Services.Guias
       await _bitacoraGuiaRepository.Insert(bitacoraGuia);
       await _bitacoraGuiaRepository.Commit();
     }
-    private void SendMail(Guia guia)
+    private async void SendMail(Guia guia)
     {
       try
       {
@@ -184,7 +185,7 @@ namespace Tiui.Services.Guias
         .TiuAmigo(guia.Remitente.Nombre)
             .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}")
             .NumeroGuia(guia.Folio);
-        this._registroGuiaEmail.SendMailAsync();
+        await this._registroGuiaEmail.SendMailAsync();
       }
       catch (Exception ex)
       {

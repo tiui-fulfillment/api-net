@@ -85,8 +85,8 @@ namespace Tiui.Services.Guias
         await this._guiaRepository.Create(guia);
         await RegistrarBitacora(guia);
         await this._unitOfWork.Commit(firm);
-        this.SendMail(guia);
         this.GetPrintFolio(guia.GuiaId.ToString());
+        this.SendMail(guia);
       }
       catch
       {
