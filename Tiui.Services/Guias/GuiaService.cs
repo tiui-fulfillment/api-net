@@ -83,10 +83,10 @@ namespace Tiui.Services.Guias
         await RegistrarDestinatario(guiaCreateDTO);
         await RegistrarConfiguracionCaja(guiaCreateDTO);
         await this._guiaRepository.Create(guia);
-        this.GetPrintFolio(guia.GuiaId.ToString());
         await RegistrarBitacora(guia);
         await this._unitOfWork.Commit(firm);
         this.SendMail(guia);
+        this.GetPrintFolio(guia.GuiaId.ToString());
       }
       catch
       {
@@ -216,9 +216,8 @@ namespace Tiui.Services.Guias
     {
       try
       {
-        TiuiAmigo tiuiAmigo = this._unitOfWork.Repository<TiuiAmigo>().Query(t => t.TiuiAmigoId == guia.TiuiAmigoId).Result.FirstOrDefault();
         this._registroGuiaEmail.To = guia.Destinatario.CorreoElectronico;
-        this._registroGuiaEmail.Destinatario(guia.Destinatario.Nombre).TiuAmigo(tiuiAmigo.GetNombreCompleto())
+        this._registroGuiaEmail.Destinatario(guia.Destinatario.Nombre).TiuAmigo(guia.Remitente.Nombre)
             .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}").NumeroGuia(guia.Folio);
         this._registroGuiaEmail.SendMailAsync();
       }

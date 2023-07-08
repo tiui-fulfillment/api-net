@@ -9,5 +9,8 @@
         IRegistroGuiaEmail TiuAmigo(string tiuiAmigo);
         IRegistroGuiaEmail UrlWebSite(string url);
         IRegistroGuiaEmail NumeroGuia(string NumeroGuia);
+        IRegistroGuiaEmail Estatus();
+        IRegistroGuiaEmail TextBody();
+        IRegistroGuiaEmail ImagenEstatus();
     }
 }

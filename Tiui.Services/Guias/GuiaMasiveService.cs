@@ -117,7 +117,7 @@ namespace Tiui.Services.Guias
         this.SendMail(guia);
         guiaCreateDTO.GuiaId = guia.GuiaId;
         guiaCreateDTO.Folio = guia.Folio;
-        //this.GeneratePDFAsync(guia.Folio).ConfigureAwait(false);
+        this.GeneratePDFAsync(guia.Folio).ConfigureAwait(false);
         return true;
       }
       catch
@@ -177,10 +177,13 @@ namespace Tiui.Services.Guias
     {
       try
       {
-        TiuiAmigo tiuiAmigo = this._unitOfWork.Repository<TiuiAmigo>().Query(t => t.TiuiAmigoId == guia.TiuiAmigoId).Result.FirstOrDefault();
+        Console.WriteLine("Enviando 🟨 correo" + guia.Remitente.Nombre);
         this._registroGuiaEmail.To = guia.Destinatario.CorreoElectronico;
-        this._registroGuiaEmail.Destinatario(guia.Destinatario.Nombre).TiuAmigo(tiuiAmigo.GetNombreCompleto())
-            .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}").NumeroGuia(guia.Folio);
+        this._registroGuiaEmail
+        .Destinatario(guia.Destinatario.Nombre)
+        .TiuAmigo(guia.Remitente.Nombre)
+            .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}")
+            .NumeroGuia(guia.Folio);
         this._registroGuiaEmail.SendMailAsync();
       }
       catch (Exception ex)

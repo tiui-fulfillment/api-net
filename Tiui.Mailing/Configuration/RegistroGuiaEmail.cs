@@ -24,13 +24,16 @@ namespace Tiui.Mailing.Configuration
             _emailSender = emailSender;
             this._configuration = configuration;
             this.loadTemplate();
+            this.Estatus();
+            this.TextBody();
+            this.ImagenEstatus();
         }
         /// <summary>
         /// Carga la plantilla del correo
         /// </summary>
         private void loadTemplate()
         {
-            string path = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + this._configuration["email:pathTemplate:registroGuia"];
+            string path = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + this._configuration["email:registroguia:pathTemplate"];
             this.body = File.ReadAllText(path, Encoding.UTF8);
         }
 
@@ -53,6 +56,22 @@ namespace Tiui.Mailing.Configuration
             this.body = this.body.Replace("{tiui_amigo}", tiuiAmigo);
             return this;
         }
+                public IRegistroGuiaEmail Estatus()
+        {
+            this.body = this.body.Replace("{estatus}", this._configuration["email:registroguia:subject"]);
+            return this;
+        }
+        public IRegistroGuiaEmail TextBody()
+        {
+            this.body = this.body.Replace("{text_body}", this._configuration["email:registroguia:textBody"]);
+            return this;
+        }
+
+        public IRegistroGuiaEmail ImagenEstatus()
+        {
+            this.body = this.body.Replace("{imagen_estatus}", this._configuration["email:registroguia:imagen_estatus"]);
+            return this;
+        }
 
         public IRegistroGuiaEmail UrlWebSite(string url)
         {
@@ -65,7 +84,7 @@ namespace Tiui.Mailing.Configuration
         /// <returns>Envia en correo electronico</returns>
         public async Task<bool> SendMailAsync()
         {
-            this._emailFluent.To(this.To).Subject(this._configuration["email:subject:registroGuia"]).Body(this.body);
+            this._emailFluent.To(this.To).Subject(this._configuration["email:registroguia:subject"]).Body(this.body);
             return await this._emailSender.SendEmailAsync(this._emailFluent.EMail());
         }
         public void Reload()

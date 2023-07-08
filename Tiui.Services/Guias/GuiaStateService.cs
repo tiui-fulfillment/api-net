@@ -132,7 +132,7 @@ namespace Tiui.Services.Guias
     {
       try
       {
-        guia = this._guiaRepository.Query(g => g.GuiaId == guia.GuiaId, g => g.TiuiAmigo, g => g.Destinatario).Result.FirstOrDefault();
+        guia = this._guiaRepository.Query(g => g.GuiaId == guia.GuiaId, g => g.TiuiAmigo, g => g.Destinatario, g => g.Remitente).Result.FirstOrDefault();
         IConfiguracionEmail configuracionEmail = this._emailStatusFactoryHelper.CreateEmailConfiguration(guia);
         if (configuracionEmail != null)
           configuracionEmail.SendMailAsync();

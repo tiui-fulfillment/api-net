@@ -48,7 +48,7 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 Console.WriteLine("🏀 ConnectionTiuiDB 🏀, " + configuration["ConnectionTiuiDB"]);
-Console.WriteLine("🐽 URL_GQL 🐽" + this._configuration["URL_GQL"]);
+Console.WriteLine("🐽 URL_GQL 🐽" + configuration["URL_GQL"]);
 
 builder.Services.AddDbContext<TiuiDBContext>(options =>
              options.UseNpgsql(configuration["ConnectionTiuiDB"]));

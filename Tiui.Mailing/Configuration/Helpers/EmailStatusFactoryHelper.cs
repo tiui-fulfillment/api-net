@@ -38,7 +38,7 @@ namespace Tiui.Mailing.Configuration.Helpers
         {
             switch ((EEstatusGuia)guia.EstatusId)
             {
-                case EEstatusGuia.CAMINO_CEDIS_CDMX:
+                /* case EEstatusGuia.CAMINO_CEDIS_CDMX:
                     this._estatusCaminoCDMXEmail.Reload();
                     this._estatusCaminoCDMXEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusCaminoCDMXEmail.Destinatario(guia.Destinatario.Nombre).NumeroGuia(guia.Folio)
@@ -51,7 +51,8 @@ namespace Tiui.Mailing.Configuration.Helpers
                     this._estatusEnCedisCDMXEmail.Destinatario(guia.Destinatario.Nombre).NumeroGuia(guia.Folio)
                         .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}");
                     return this._estatusEnCedisCDMXEmail;
-                case EEstatusGuia.RUTA_ENTREGA:
+                 */
+                 case EEstatusGuia.RUTA_ENTREGA:
                     this._estatusRutaEntregaEmail.Reload();
                     this._estatusRutaEntregaEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusRutaEntregaEmail.Destinatario(guia.Destinatario.Nombre)
