@@ -23,7 +23,6 @@ var configBuilder = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 var configuration = configBuilder.Build();
-Console.WriteLine("▶▶▶▶▶▶ OnConfiguring  ▶， " + configuration["ConnectionTiuiDB"]);
 var builder = WebApplication.CreateBuilder(args);
 
 #region Log
@@ -48,7 +47,8 @@ builder.Services.AddControllers(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-Console.WriteLine("OnConfiguring 🏀🍑💙, " + configuration["ConnectionTiuiDB"]);
+Console.WriteLine("🏀 ConnectionTiuiDB 🏀, " + configuration["ConnectionTiuiDB"]);
+Console.WriteLine("🐽 URL_GQL 🐽" + this._configuration["URL_GQL"]);
 
 builder.Services.AddDbContext<TiuiDBContext>(options =>
              options.UseNpgsql(configuration["ConnectionTiuiDB"]));
@@ -59,9 +59,7 @@ builder.Services.AddDependency();
 builder.Services.AddAutoMapper(typeof(AutoMapping));
 var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
 var jwtSettingsJson = JsonConvert.SerializeObject(jwtSettings, Formatting.Indented);
-Console.WriteLine("▶▶▶▶▶▶ JwtSettings  ▶， " + jwtSettingsJson);
 
-Console.WriteLine("▶▶▶▶▶▶ JwtSettings  ▶， " + configuration.GetSection("JwtSettings").Get<JwtSettings>());
 builder.Services.AddSingleton(jwtSettings);
 builder.Services.AddSingleton<WebSocketConnectionManager>();
 builder.Services.AddSingleton<GuiaNotificationClientes>();
@@ -69,9 +67,6 @@ builder.Services.AddSingleton<GuiaNotificationClientes>();
 #endregion
 
 #region JWT Authentication
-
-Console.WriteLine("▶▶▶▶▶▶ JwtSettings:issuer  ▶， " + configuration["JwtSettings:issuer"]);
-Console.WriteLine("▶▶▶▶▶▶ JwtSettings:audience  ▶， " + configuration["JwtSettings:audience"]);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -83,7 +78,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidateIssuerSigningKey = true,
         ValidIssuer = configuration["JwtSettings:issuer"],
         ValidAudience = configuration["JwtSettings:audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["KEY_JWT_TIUI"])),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-256-bit-secret")),
         ClockSkew = TimeSpan.Zero
     });
 #endregion

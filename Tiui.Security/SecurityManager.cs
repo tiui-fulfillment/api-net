@@ -48,7 +48,7 @@ namespace Tiui.Security
             //Standard claims
             List<Claim> claims = GetClaims(appUser);
             //Creating jwt token                       
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["KEY_JWT_TIUI"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-256-bit-secret"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(

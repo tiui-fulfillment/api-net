@@ -92,9 +92,7 @@ namespace Tiui.Services.GuiaNotificationClientes
               request.Content = new StringContent(JsonSerializer.Serialize(guiaData, _optionsJSON), Encoding.UTF8, "application/json");
               var response = await _httpClient.SendAsync(request);
               var responseContent = await response.Content.ReadAsStringAsync();
-              Console.WriteLine("😱😱😱😱😱😱" + responseContent + " 😱");
               response.EnsureSuccessStatusCode();
-
             }
             catch (System.Exception ex)
             {

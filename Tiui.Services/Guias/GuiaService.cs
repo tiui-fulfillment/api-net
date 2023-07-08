@@ -83,7 +83,7 @@ namespace Tiui.Services.Guias
         await RegistrarDestinatario(guiaCreateDTO);
         await RegistrarConfiguracionCaja(guiaCreateDTO);
         await this._guiaRepository.Create(guia);
-        //this.GetPrintFolio(guia.GuiaId.ToString());
+        this.GetPrintFolio(guia.GuiaId.ToString());
         await RegistrarBitacora(guia);
         await this._unitOfWork.Commit(firm);
         this.SendMail(guia);

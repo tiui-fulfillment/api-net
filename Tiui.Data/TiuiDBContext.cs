@@ -65,7 +65,6 @@ namespace Tiui.Data
     #region Metodos
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      Console.WriteLine("OnConfiguring 🏀🍑💙, " + this._configuration["ConnectionTiuiDB"]);
       if (!optionsBuilder.IsConfigured)
       {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

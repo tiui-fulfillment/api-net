@@ -39,7 +39,6 @@ namespace Tiui.Services.Comun
       response.EnsureSuccessStatusCode();
 
       var responseContent = await response.Content.ReadAsStringAsync();
-      Console.WriteLine("🍑💙 Content:💙💙💙💙💙💙 " + responseContent);
 
       return responseContent;
     }

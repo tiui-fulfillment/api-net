@@ -7,6 +7,7 @@ using Tiui.Application.Services.Comun;
 
 namespace Tiui.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("gql")]
     [ApiController]
     public class GraphqlController : ControllerBase
