@@ -306,7 +306,6 @@ namespace Tiui.Services.Guias
                 isError
             }
             }";
-          string variables = JsonConvert.SerializeObject(new { folios = new List<string> { guiaId } });
 
           var request = new HttpRequestMessage(HttpMethod.Post, this._configuration["URL_GQL"]);
           //request.Headers.Add("Authorization", "Bearer token-de-autenticación");

@@ -10,7 +10,7 @@ namespace Tiui.Mailing.Configuration.Helpers
         private readonly IEstatusCaminoCDMXEmail _estatusCaminoCDMXEmail;
         private readonly IEstatusEnCedisCDMXEmail _estatusEnCedisCDMXEmail;
         private readonly IEstatusEntregadoEmail _estatusEntregadoEmail;
-        private readonly IEstatusReagendadoEmail _estatusReagendadoEmail;
+        private readonly IEstatusNoVisitadoEmail _estatusReagendadoEmail;
         private readonly IEstatusRutaEntregaEmail _estatusRutaEntregaEmail;
         private readonly IEstatusPreparandoRutaEmail _estatusPreparandoRutaEmail;
         private readonly IEstatusNoVisitadoEmail _estatusNoVisitadoEmail;
@@ -18,7 +18,7 @@ namespace Tiui.Mailing.Configuration.Helpers
         private readonly IConfiguration _configuration;
 
         public EmailStatusFactoryHelper(IEstatusCaminoCDMXEmail estatusCaminoCDMXEmail, IEstatusEnCedisCDMXEmail estatusEnCedisCDMXEmail,
-            IEstatusEntregadoEmail estatusEntregadoEmail, IEstatusReagendadoEmail estatusReagendadoEmail, IEstatusRutaEntregaEmail estatusRutaEntregaEmail, IEstatusPreparandoRutaEmail estatusPreparandoRutaEmail
+            IEstatusEntregadoEmail estatusEntregadoEmail, IEstatusNoVisitadoEmail estatusReagendadoEmail, IEstatusRutaEntregaEmail estatusRutaEntregaEmail, IEstatusPreparandoRutaEmail estatusPreparandoRutaEmail
             ,
             IEstatusNoVisitadoEmail estatusNoVisitadoEmail, IEstatusIntentoDeEntregaEmail estatusIntentoDeEntregaEmail,
              IConfiguration configuration)
@@ -57,7 +57,7 @@ namespace Tiui.Mailing.Configuration.Helpers
                     this._estatusRutaEntregaEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusRutaEntregaEmail.Destinatario(guia.Destinatario.Nombre)
                     .NumeroGuia(guia.Folio)
-                        .TiuAmigo(guia.TiuiAmigo.GetNombreCompleto())
+                        .TiuAmigo(guia.Remitente.Nombre)
                         .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}"); ;
                     return this._estatusRutaEntregaEmail;
                 case EEstatusGuia.PREPARANDO_RUTA:
@@ -65,7 +65,7 @@ namespace Tiui.Mailing.Configuration.Helpers
                     this._estatusPreparandoRutaEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusPreparandoRutaEmail.Destinatario(guia.Destinatario.Nombre)
                     .NumeroGuia(guia.Folio)
-                        .TiuAmigo(guia.TiuiAmigo.GetNombreCompleto())
+                        .TiuAmigo(guia.Remitente.Nombre)
                         .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}"); ;
                     return this._estatusPreparandoRutaEmail;
                 case EEstatusGuia.NO_VISITADO:
@@ -73,7 +73,7 @@ namespace Tiui.Mailing.Configuration.Helpers
                     this._estatusNoVisitadoEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusNoVisitadoEmail.Destinatario(guia.Destinatario.Nombre)
                     .NumeroGuia(guia.Folio)
-                        .TiuAmigo(guia.TiuiAmigo.GetNombreCompleto())
+                        .TiuAmigo(guia.Remitente.Nombre)
                         .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}"); ;
                     return this._estatusNoVisitadoEmail;
                 case EEstatusGuia.PRIMER_INTENTO_ENTREGA:
@@ -81,20 +81,21 @@ namespace Tiui.Mailing.Configuration.Helpers
                     this._estatusIntentoDeEntregaEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusIntentoDeEntregaEmail.Destinatario(guia.Destinatario.Nombre)
                     .NumeroGuia(guia.Folio)
-                        .TiuAmigo(guia.TiuiAmigo.GetNombreCompleto())
+                        .TiuAmigo(guia.Remitente.Nombre)
                         .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}"); ;
                     return this._estatusNoVisitadoEmail;
                 case EEstatusGuia.REAGENDADO:
                     this._estatusReagendadoEmail.Reload();
                     this._estatusReagendadoEmail.To = guia.Destinatario.CorreoElectronico;
-                    this._estatusReagendadoEmail.Destinatario(guia.Destinatario.Nombre).NumeroGuia(guia.Folio)
-                        .FechaEntrega(guia.FechaReagendado.Value);
+                    this._estatusReagendadoEmail.Destinatario(guia.Destinatario.Nombre).NumeroGuia(guia.Folio).TiuAmigo(guia.Remitente.Nombre)
+                        .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}");
+
                     return this._estatusReagendadoEmail;
                 case EEstatusGuia.ENTREGAGO:
                     this._estatusEntregadoEmail.Reload();
                     this._estatusEntregadoEmail.To = guia.Destinatario.CorreoElectronico;
                     this._estatusEntregadoEmail.Destinatario(guia.Destinatario.Nombre).NumeroGuia(guia.Folio)
-                        .TiuAmigo(guia.TiuiAmigo.GetNombreCompleto())
+                        .TiuAmigo(guia.Remitente.Nombre)
                         .UrlWebSite($"{this._configuration["UrlWebSiteDetalleGuia"]}/{guia.Folio}"); ;
                     return this._estatusEntregadoEmail;
                 default:

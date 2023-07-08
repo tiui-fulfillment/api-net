@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net.Mime;
 using System.Net.WebSockets;
 using System.Text;
@@ -12,7 +13,7 @@ using Tiui.Application.DTOs.Reports;
 using Tiui.Application.Reports;
 using Tiui.Application.Services.Guias;
 using Tiui.Application.Services.websocket;
-
+using Tiui.Application.Services.Comun;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Tiui.Api.Controllers
@@ -29,9 +30,10 @@ namespace Tiui.Api.Controllers
     private readonly IGuiaMasiveService _guiaMasiveService;
     private readonly HttpClient _httpClient;
     private readonly IGuiaWebSocketHandler _guiaWebSocketHandler;
+    private readonly IGraphqlService _graphqlService;
 
     public GuiaController(IGuiaService guiaService, IGuiaReport guiaReport, IGuiaStateService guiaStateService, IGuiaCompleteReport guiaCompleteReport
-        , IGuiaMasiveService guiaMasiveService, HttpClient httpClient, IGuiaWebSocketHandler guiaWebSocketHandler)
+        , IGuiaMasiveService guiaMasiveService, HttpClient httpClient, IGuiaWebSocketHandler guiaWebSocketHandler, IGraphqlService graphqlService)
     {
       this._guiaService = guiaService;
       this._guiaReport = guiaReport;
@@ -40,7 +42,7 @@ namespace Tiui.Api.Controllers
       this._guiaMasiveService = guiaMasiveService;
       this._httpClient = httpClient;
       this._guiaWebSocketHandler = guiaWebSocketHandler;
-
+      this._graphqlService = graphqlService;
     }
     // POST api/<GuiaController>        
     [HttpPost]
@@ -154,6 +156,146 @@ namespace Tiui.Api.Controllers
     public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO)
     {
       return await this._guiaService.SetGuiaCancelationAsync(guiaUpdateCancelationDTO);
+    }
+    [AllowAnonymous]
+    [HttpGet, Route("getGuia/{folio}")]
+    public async Task<IActionResult> GetGuiaGQL(string folio)
+    {
+      string query = @"
+              query GetGuias($filters: guiaTableFilter) {
+                  getGuias(GuiasFilter: $filters) {
+                    codeError
+                    isError
+                    message
+                    result {
+                      CantidadPaquetes
+                      CobroContraEntrega
+                      Destinatario {
+                        Calle
+                        Ciudad
+                        CodigoPostal
+                        Colonia
+                        CorreoElectronico
+                        Cruzamiento
+                        DireccionGuiaId
+                        Discriminator
+                        Empresa
+                        Estado
+                        GuiaId
+                        Nombre
+                        Numero
+                        Pais
+                        Referencias
+                        Remitente_GuiaId
+                        Telefono
+                      }
+                      EsPagoContraEntrega
+                      Estatus {
+                        Descripcion
+                        EstatusId
+                        Nombre
+                        Proceso
+                        TipoFlujo
+                      }
+                      EstatusId
+                      FechaConciliacion
+                      FechaEstimadaEntrega
+                      FechaReagendado
+                      FechaRegistro
+                      Folio
+                      GuiaId
+                      ImporteContraEntrega
+                      NombreProducto
+                      ProcesoCancelacion
+                      Remitente {
+                        Calle
+                        Ciudad
+                        CodigoPostal
+                        Colonia
+                        DireccionGuiaId
+                        Cruzamiento
+                        CorreoElectronico
+                        Discriminator
+                        Empresa
+                        Estado
+                        GuiaId
+                        Nombre
+                        Numero
+                        Pais
+                        Referencias
+                        Remitente_GuiaId
+                        Telefono
+                      }
+                      TipoProcesoCancelacion
+                      TiuiAmigoId
+                      TiuiAmigo {
+                        TiuiAmigoId
+                        RazonSocial
+                        Nombres
+                        Apellidos
+                      }
+                      Movimientos {
+                        FechaRegistro
+                        estatusnuevoname
+                        Folio
+                        BitacoraGuiaId
+                        EstatusNuevo
+                        GuiaId
+                        Comentarios {
+                          GuiaId
+                          date_register
+                          for
+                          id
+                          idMotivoCancelacion
+                          text
+                        }
+                        Evidencias {
+                          GuiaId
+                          address
+                          date_register
+                          for
+                          id
+                          latitude
+                          longitude
+                          mimeType
+                          text
+                          url
+                        }          FechaRegistro
+                        estatusnuevoname
+                        Folio
+                        BitacoraGuiaId
+                        EstatusNuevo
+                        GuiaId
+                        Comentarios {
+                          GuiaId
+                          date_register
+                          for
+                          id
+                          idMotivoCancelacion
+                          text
+                          act_user
+                        }
+                        Evidencias {
+                          GuiaId
+                          address
+                          date_register
+                          for
+                          id
+                          latitude
+                          longitude
+                          mimeType
+                          text
+                          url
+                          act_user
+                        }
+                      }
+                    }
+                  }
+                }";
+      string variables = "{\"filters\": {\"Folio\": {\"value\": \"" + folio + "\"}}}";
+      var response = await this._graphqlService.SendGraphQlRequestAsync(query, variables);
+      Ok();
+      return Content(response.ToString(), "application/json");
     }
   }
 }
