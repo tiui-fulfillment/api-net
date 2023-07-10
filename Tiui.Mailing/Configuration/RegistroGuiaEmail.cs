@@ -33,7 +33,7 @@ namespace Tiui.Mailing.Configuration
         /// </summary>
         private void loadTemplate()
         {
-            string path = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + this._configuration["email:registroguia:pathTemplate"];
+            string path = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + this._configuration["email:registroGuia:pathTemplate"];
             this.body = File.ReadAllText(path, Encoding.UTF8);
         }
 

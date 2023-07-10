@@ -9,5 +9,6 @@
         public string AccessToken { get; set; }
         public int ExpireInSeconds { get; set; }
         public string MessageError { get; set; }
+        public int? TiuiAmigoId { get; set; }
     }
 }

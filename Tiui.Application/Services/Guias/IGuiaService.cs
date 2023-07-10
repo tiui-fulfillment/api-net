@@ -14,6 +14,6 @@ namespace Tiui.Application.Services.Guias
     public Task<GuiaTrackingPagedListDTO> GetWithFilterAndPaging(GuiaFilterDTO filtroDTO);
     public Task<GuiaTrackingPagedListDTO> GetWithFilterAndPagingTiuiAmigo(GuiaFilterDTO filtroDTO);
     public Task<byte[]> GetPrintFolio(string guiaId);
-    public Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO);
+    public Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO, TokenClaimsDTO tokenClaims);
   }
 }

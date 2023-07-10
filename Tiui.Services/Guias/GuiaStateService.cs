@@ -55,6 +55,21 @@ namespace Tiui.Services.Guias
 
       return new ApiResultModel<GuiaUpdateStateDTO> { Entity = guiaStateDTO, Message = "Actualización exitosa", Success = true, Status = "200" };
     }
+
+    public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetStateCancelation(GuiaUpdateStateDTO guiaStateDTO,dynamic guia)
+    {
+      EEstatusGuia estatusAnterior = (EEstatusGuia)guia.EstatusId;
+      var motivoCancelacion = guiaStateDTO.NuevoEstatus == EEstatusGuia.CANCELADO ? await GetMotivoCancelacion(guiaStateDTO.MotivoCancelacionId) : null;
+      GuiaStateFactoryMethod.CreateGuiaState(guia, guiaStateDTO.NuevoEstatus, fechaConciliado: guiaStateDTO.FechaConciliacion
+           , fechaReagendado: guiaStateDTO.FechaReagendado, motivoCancelacion: motivoCancelacion);
+      guia.ChangeState();
+      guia.Estatus = null;
+      await Persist(guia, estatusAnterior);
+
+      return new ApiResultModel<GuiaUpdateStateDTO> { Entity = guiaStateDTO, Message = "Actualización exitosa", Success = true, Status = "200" };
+
+    }
+
     private async Task<Guia> GetGuia(long? guiaId)
     {
       if (!guiaId.HasValue)

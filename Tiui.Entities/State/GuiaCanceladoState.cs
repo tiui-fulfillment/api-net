@@ -51,9 +51,7 @@ namespace Tiui.Entities.State
         {
             Guia guia = (Guia)this._context;
             if (
-                guia.Estatus.Proceso.ToUpper().Equals(ETipoProceso.CELEBRANDO.GetString()) 
-            || (guia.Estatus.Proceso.ToUpper().Equals(ETipoProceso.PREPARANDO.GetString()) && this._motivoCancelacion.TipoCancelacion != ETipoCancelacion.ANTES_DE_RUTA)
-                || (guia.Estatus.Proceso.ToUpper().Equals(ETipoProceso.EN_CAMINO.GetString()) && this._motivoCancelacion.TipoCancelacion != ETipoCancelacion.EN_RUTA))
+                guia.Estatus.Proceso.ToUpper().Equals(ETipoProceso.CELEBRANDO.GetString()))
                 throw new BusinessRuleException("El estatus que desea asignar no es correcto");
             guia.EstatusId = (int)EEstatusGuia.CANCELADO;
         }

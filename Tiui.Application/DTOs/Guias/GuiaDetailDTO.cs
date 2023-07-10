@@ -12,7 +12,8 @@
         public string CiudadDestino { get; set; }
         public string Empresa { get; set; }
         public long? EstatusId { get; set; }
-        public DateTime FechaEstimadaEntrega { get; set; }        
+        public long? TiuiAmigoId { get; set; }
+        public DateTime FechaEstimadaEntrega { get; set; }
         public NotificacionClienteDTO NotificacionCliente { get; set; }
         public List<BitacoraGuiaDTO> Movimientos { get; set; }
         public List<string> Procesos { get; set; }

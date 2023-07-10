@@ -14,5 +14,6 @@ namespace Tiui.Application.DTOs.Security
         public DateTime FechaModificacion { get; set; }
         public bool Activo { get; set; }
         public ETipoUsuario TipoUsuario { get; set; }
+        public int? TiuiAmigoId { get; set; }
     }
 }

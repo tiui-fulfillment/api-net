@@ -9,5 +9,8 @@ namespace Tiui.Application.Security
     {
         public AuthenticatedUserDTO BuildAuthenticatedUserObject(UsuarioDTO user, int? tiuiAmigoId, string sessionId = "");
         public AuthenticatedAdminUserDTO BuildAuthenticatedAdminUserObject(UsuarioDTO user);
+
+        public TokenClaimsDTO GetTokenClaims(string token);
+
     }
 }

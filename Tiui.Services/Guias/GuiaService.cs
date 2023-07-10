@@ -1,17 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Tiui.Application.DTOs;
-using Tiui.Application.DTOs.Guias;
-using Tiui.Application.DTOs.Paging;
-using Tiui.Application.Mail.Configuration;
-using Tiui.Application.Repository.Guias;
-using Tiui.Application.Repository.UnitOfWork;
-using Tiui.Application.Services.Guias;
-using Tiui.Entities.Comun;
-using Tiui.Entities.Guias;
-using Tiui.Utils.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
@@ -21,7 +8,22 @@ using System.Net.Mime;
 using Newtonsoft.Json;
 using System.Text;
 using System.IO;
-using Tiui.Application.Repository.Seguridad;
+using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Tiui.Entities.State;
+using Tiui.Application.DTOs;
+using Tiui.Application.DTOs.Guias;
+using Tiui.Application.DTOs.Paging;
+using Tiui.Application.Mail.Configuration;
+using Tiui.Application.Repository.Guias;
+using Tiui.Application.Repository.UnitOfWork;
+using Tiui.Application.Services.Guias;
+using Tiui.Application.DTOs.Security;
+using Tiui.Application.Security;
+using Tiui.Entities.Comun;
+using Tiui.Entities.Guias;
+using Tiui.Utils.Exceptions;
 
 namespace Tiui.Services.Guias
 {
@@ -30,7 +32,6 @@ namespace Tiui.Services.Guias
   /// </summary>
   public class GuiaService : IGuiaService
   {
-    private readonly IUsarioRepository _usuarioRepository;
     private readonly IGuiaRepository _guiaRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -40,6 +41,7 @@ namespace Tiui.Services.Guias
     private readonly IPaqueteriaRepository _paqueteriaRepository;
     private readonly IBitacoraGuiaRepository _bitacoraGuiaRepository;
     private readonly HttpClient _httpClient;
+    private readonly IGuiaStateService _guiaStateService;
 
 
     public GuiaService(
@@ -52,10 +54,9 @@ namespace Tiui.Services.Guias
       ILogger<GuiaService> logger,
       IPaqueteriaRepository paqueteriaRepository,
       IBitacoraGuiaRepository bitacoraGuiaRepository,
-      IUsarioRepository usuarioRepository
+      IGuiaStateService guiaStateService
       )
     {
-      this._usuarioRepository = usuarioRepository;
       this._guiaRepository = guiaRepository;
       this._unitOfWork = unitOfWork;
       this._mapper = mapper;
@@ -65,6 +66,7 @@ namespace Tiui.Services.Guias
       this._paqueteriaRepository = paqueteriaRepository;
       this._bitacoraGuiaRepository = bitacoraGuiaRepository;
       this._httpClient = httpClient;
+      this._guiaStateService = guiaStateService;
     }
     /// <summary>
     /// Crear el registro de la guia con todas sus relaciones
@@ -233,7 +235,7 @@ namespace Tiui.Services.Guias
     /// <returns>GuiaDetailDTO con información de la guía encontrada</returns>
     public async Task<GuiaDetailDTO> GetGuia(string folio)
     {
-      var guia = (await this._guiaRepository.Query(g => g.Folio.Equals(folio), g => g.Destinatario, g => g.Remitente)).FirstOrDefault();
+      var guia = (await this._guiaRepository.Query(g => g.Folio.Equals(folio), g => g.Destinatario, g => g.Remitente, g => g.TiuiAmigo)).FirstOrDefault();
       if (guia == null)
         throw new DataNotFoundException("No se encontró la guía con el folio proporcionado");
       var repository = this._unitOfWork.Repository<NotificacionCliente>();
@@ -247,6 +249,7 @@ namespace Tiui.Services.Guias
       var guiaDTO = new GuiaDetailDTO();
       guiaDTO.GuiaId = data.guia.GuiaId;
       guiaDTO.Folio = data.guia.Folio;
+      guiaDTO.TiuiAmigoId = data.guia.TiuiAmigoId;
       guiaDTO.NombreRemitente = data.guia.Remitente.Nombre;
       guiaDTO.Empresa = data.guia.Remitente.Empresa;
       guiaDTO.CiudadOrigen = data.guia.Remitente.Ciudad;
@@ -343,11 +346,13 @@ namespace Tiui.Services.Guias
         throw new DataNotFoundException("Algo malo a pasado revise su folio");
       }
     }
-    public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO)
+    public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO, TokenClaimsDTO tokenClaims)
     {
+      Console.WriteLine("❎🦊tokenClaims🍅🏀: " + JsonConvert.SerializeObject(tokenClaims));
       try
       {
         //TODO filtro por tiuiamigo del usuario.
+
         var guia =
         await GetGuia(guiaUpdateCancelationDTO.Folio.ToString());
         if (guia == null)
@@ -366,19 +371,59 @@ namespace Tiui.Services.Guias
             Success = false,
           };
         }
-        var guiaUpdateStateDTO = new GuiaUpdateStateDTO
+        if (tokenClaims.Role == "AMIGOTIUI")
         {
-          MotivoCancelacionId = guiaUpdateCancelationDTO.MotivoCancelacionId,
-          GuiaId = guia.GuiaId,
-          NuevoEstatus = EEstatusGuia.CANCELADO,
+          if (guia.TiuiAmigoId != tokenClaims.TiuiAmigoId)
+          {
+            return new ApiResultModel<GuiaUpdateStateDTO>
+            {
+              Message = "No tienes permisos para cancelar esta guía",
+              Success = false,
+            };
+          }
+          Console.WriteLine("guia  ▶￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + JsonConvert.SerializeObject(guia));
+          var guiaUpdateStateDTO = new GuiaStateChangeMasiveDTO
+          {
+            MotivoCancelacionId = guiaUpdateCancelationDTO.MotivoCancelacionId,
+            GuiaId = guia.GuiaId,
+            NuevoEstatus = EEstatusGuia.CANCELADO
+          };
+          return await this._guiaStateService.SetStateMasive(guiaUpdateStateDTO);
+        }
+        if (tokenClaims.Role == "ADMIN")
+        {
+          Console.WriteLine("guia  ADMIN 🍅  ▶￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
+
+          var guiaUpdateStateDTO = new GuiaUpdateStateDTO
+          {
+            MotivoCancelacionId = guiaUpdateCancelationDTO.MotivoCancelacionId,
+            GuiaId = guia.GuiaId,
+            NuevoEstatus = EEstatusGuia.CANCELADO
+          };
+          Console.WriteLine("❎📦🐶    guiaUpdateStateDTO  ▶￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + JsonConvert.SerializeObject(guiaUpdateStateDTO));
+          return await this._guiaStateService.SetState(guiaUpdateStateDTO);
         };
-        var guiaStateService = new GuiaStateService();
-        return await guiaStateService.SetState(guiaUpdateStateDTO);
+        return new ApiResultModel<GuiaUpdateStateDTO>
+        {
+          Message = "No tienes permisos para cancelar esta guía",
+          Success = false,
+        };
       }
       catch (System.Exception)
       {
         throw new System.Exception("Ocurrió un error al cancelar la guía");
       }
+    }
+    public async Task<Guia> GetGuiaFolio(string folio)
+    {
+      var guia = (await this._guiaRepository.Query(g => g.Folio.Equals(folio), g => g.Destinatario, g => g.Remitente)).FirstOrDefault();
+      if (guia == null)
+        throw new DataNotFoundException("No se encontró la guía con el folio proporcionado");
+      var repository = this._unitOfWork.Repository<NotificacionCliente>();
+      var notificacion = (await repository.Query(n => n.GuiaId == guia.GuiaId)).FirstOrDefault();
+      var bitacoraGuia = await this._bitacoraGuiaRepository.GetStateChangeGuia(guia.GuiaId);
+      Console.WriteLine("guia 🎉", JsonConvert.SerializeObject(guia));
+      return guia;
     }
   }
 }

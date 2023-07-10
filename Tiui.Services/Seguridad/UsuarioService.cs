@@ -244,6 +244,6 @@ namespace Tiui.Services.Seguridad
                 Success = true,
                 Entity = this._mapper.Map<UsuarioDTO>(user)
             };
-        }        
+        }
     }
 }

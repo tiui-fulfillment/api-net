@@ -14,6 +14,7 @@ using Tiui.Application.Reports;
 using Tiui.Application.Services.Guias;
 using Tiui.Application.Services.websocket;
 using Tiui.Application.Services.Comun;
+using Tiui.Application.Security;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Tiui.Api.Controllers
@@ -31,9 +32,21 @@ namespace Tiui.Api.Controllers
     private readonly HttpClient _httpClient;
     private readonly IGuiaWebSocketHandler _guiaWebSocketHandler;
     private readonly IGraphqlService _graphqlService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ISecurityManager _securityManager;
 
-    public GuiaController(IGuiaService guiaService, IGuiaReport guiaReport, IGuiaStateService guiaStateService, IGuiaCompleteReport guiaCompleteReport
-        , IGuiaMasiveService guiaMasiveService, HttpClient httpClient, IGuiaWebSocketHandler guiaWebSocketHandler, IGraphqlService graphqlService)
+    public GuiaController(
+      IGuiaService guiaService,
+      IGuiaReport guiaReport,
+      IGuiaStateService guiaStateService,
+      IGuiaCompleteReport guiaCompleteReport,
+      IGuiaMasiveService guiaMasiveService,
+      HttpClient httpClient,
+      IGuiaWebSocketHandler guiaWebSocketHandler,
+      IGraphqlService graphqlService,
+      IHttpContextAccessor httpContextAccessor,
+      ISecurityManager securityManager
+      )
     {
       this._guiaService = guiaService;
       this._guiaReport = guiaReport;
@@ -43,6 +56,8 @@ namespace Tiui.Api.Controllers
       this._httpClient = httpClient;
       this._guiaWebSocketHandler = guiaWebSocketHandler;
       this._graphqlService = graphqlService;
+      this._httpContextAccessor = httpContextAccessor;
+      this._securityManager = securityManager;
     }
     // POST api/<GuiaController>        
     [HttpPost]
@@ -156,8 +171,19 @@ namespace Tiui.Api.Controllers
     [HttpPost, Route("cancelation")]
     public async Task<ApiResultModel<GuiaUpdateStateDTO>> SetGuiaCancelationAsync(GuiaUpdateCancelationDTO guiaUpdateCancelationDTO)
     {
-      return await this._guiaService.SetGuiaCancelationAsync(guiaUpdateCancelationDTO);
+      // Obtener el contexto HTTP actual
+      HttpContext httpContext = this._httpContextAccessor.HttpContext;
+
+      // Obtener el encabezado Authorization
+      string authorizationHeader = httpContext.Request.Headers["Authorization"];
+
+      // Extraer el token del encabezado (normalmente está en el formato "Bearer {token}")
+      string token = authorizationHeader?.Replace("Bearer ", "");
+      TokenClaimsDTO tokenClaims = this._securityManager.GetTokenClaims(token);
+
+      return await this._guiaService.SetGuiaCancelationAsync(guiaUpdateCancelationDTO, tokenClaims);
     }
+
     [AllowAnonymous]
     [HttpGet, Route("getGuia/{folio}")]
     public async Task<IActionResult> GetGuiaGQL(string folio)

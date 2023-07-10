@@ -31,6 +31,7 @@ namespace Tiui.Security
         public AuthenticatedUserDTO BuildAuthenticatedUserObject(UsuarioDTO user, int? tiuiAmigoId, string sessionId = "")
         {
             AuthenticatedUserDTO authUser = new AuthenticatedUserDTO();
+            user.TiuiAmigoId = tiuiAmigoId;
             authUser.User = user;
             authUser.AccessToken = BuildJwtToken(user);
             authUser.TiuiAmigoId = tiuiAmigoId;
@@ -51,7 +52,7 @@ namespace Tiui.Security
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-256-bit-secret"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var token = new JwtSecurityToken(
+            var token = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
@@ -75,7 +76,8 @@ namespace Tiui.Security
                 new Claim(JwtRegisteredClaimNames.Email, appUser.NombreUsuario),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, appUser.UsuarioId.ToString()),
-                new Claim(ClaimTypes.Role, appUser.TipoUsuario.ToString())
+                new Claim(ClaimTypes.Role, appUser.TipoUsuario.ToString()),
+                new Claim("TiuiAmigoId", appUser.TiuiAmigoId.ToString())
             };
         }
 
@@ -87,5 +89,39 @@ namespace Tiui.Security
             authUser.ExpireInSeconds = this._jwtSettings.TimeToExpiration * 60;
             return authUser;
         }
+        public int? GetTiuiAmigoIdFromToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var tiuiAmigoIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "TiuiAmigoId");
+            if (tiuiAmigoIdClaim != null && int.TryParse(tiuiAmigoIdClaim.Value, out int tiuiAmigoId))
+            {
+                return tiuiAmigoId;
+            }
+
+            return 0;
+        }
+        public TokenClaimsDTO GetTokenClaims(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+
+            var roleClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            var tiuiAmigoIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "TiuiAmigoId")?.Value;
+            var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Email)?.Value;
+            var nameIdentifierClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            int tiuiAmigoId = tiuiAmigoIdClaim == null ? 0 : tiuiAmigoIdClaim == "" ? 0 : int.Parse(tiuiAmigoIdClaim);
+
+            return new TokenClaimsDTO
+            {
+                Role = roleClaim,
+                TiuiAmigoId = tiuiAmigoId,
+                Email = emailClaim,
+                NameIdentifier = nameIdentifierClaim
+            };
+        }
+
+
     }
 }
