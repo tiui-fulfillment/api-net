@@ -116,9 +116,9 @@ namespace Tiui.Services.Guias
         await RegistrarBitacora(guia);
         guiaCreateDTO.GuiaId = guia.GuiaId;
         guiaCreateDTO.Folio = guia.Folio;
-        this.GeneratePDFAsync(guia.Folio);
         // this.SendMail(guia);
         await this._unitOfWork.Commit(firm);
+        this.GeneratePDFAsync(guia.Folio);
         return true;
       }
       catch
